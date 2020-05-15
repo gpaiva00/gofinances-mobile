@@ -1,19 +1,28 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { FC } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { useFonts } from '@use-expo/font'
+import { AppLoading } from 'expo'
+// import * as Font from 'expo-font'
 
-export default function App() {
+import Routes from './src/routes/';
+
+const App: FC = () => {
+  let [fontsLoaded] = useFonts({
+    'Helvetica-Regular': require('./assets/fonts/HelveticaNowDisplay-Regular.otf'),
+    'Helvetica-Medium': require('./assets/fonts/HelveticaNowDisplay-Medium.otf'),
+    'Helvetica-Bold': require('./assets/fonts/HelveticaNowDisplay-Bold.otf'),
+    'Helvetica-Light': require('./assets/fonts/HelveticaNowDisplay-Light.otf'),
+    'Helvetica-Thin': require('./assets/fonts/HelveticaNowDisplay-Thin.otf'),
+    'Helvetica-ExtraBold': require('./assets/fonts/HelveticaNowDisplay-ExtraBold.otf'),
+  });
+
+  if (!fontsLoaded) return <AppLoading />
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
-  );
+    <NavigationContainer>
+     <Routes />
+    </NavigationContainer>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
