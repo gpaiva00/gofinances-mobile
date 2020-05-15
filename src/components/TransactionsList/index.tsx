@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
-import { View, Text, FlatList } from 'react-native'
-import { MaterialIcons } from '@expo/vector-icons'
+import { FlatList } from 'react-native'
 
-import styles from './styles'
+import TransactionsListItem from '../TransactionsListItem';
 
-type Transactions = {
-  id: string
-  title: string
-  value: number
-  category_id: string
+type Transaction = {
+  id: string;
+  title: string;
+  value: number;
+  category_id: string;
+  type: string;
 }
 
 type Category = {
@@ -17,48 +17,36 @@ type Category = {
 }
 
 type AppProps = {
-  transactions: [Transactions] | undefined;
+  transactions: [Transaction] | undefined;
   categories: [Category] | undefined;
 }
 
 const categoryIcons = [
   {name: 'Alimentação', icon: 'restaurant'},
   {name: 'Recebimentos', icon: 'credit-card'},
+  {name: 'Celular', icon: 'smartphone'},
+  {name: 'Contas', icon: 'receipt'},
 ]
 
 const TransactionsList: FC<AppProps> = ({ transactions, categories }) => {
 
-  const returnCategory = (id: string) =>
-    categories?.find(category => category.id === id)?.title || '';
+  const returnCategory = (transactionId: string) => {
+    const name = categories?.find((category) => category.id === transactionId)?.title || ''
+    const iconName = categoryIcons.find((item) => item.name === name)?.icon || "credit-card"
+    return { name, iconName };
+  }
   
-  const returnCategoryIcon = (name: string) => 
-    categoryIcons.find(item => item.name === name)?.icon || 'category'
-
   return (
     <FlatList
       data={transactions}
       keyExtractor={(item) => String(item.id)}
       showsVerticalScrollIndicator={false}
-      renderItem={({ item: transaction }) => (
-        <View style={styles.item}>
-          
-          <View style={{ flexDirection: 'row' }}>
-            <MaterialIcons 
-              name={returnCategoryIcon(returnCategory(transaction.category_id))}
-              size={40}
-            />
-            <View style={styles.itemTextContent}>
-              <Text style={styles.itemTitle}>{transaction.title}</Text>
-              <Text style={styles.itemCategory}>{returnCategory(transaction.category_id)}</Text>
-            </View>
-          </View>
-
-          <View style={styles.itemValueContent}>
-            <Text style={styles.itemCurrency}>R$ </Text>
-            <Text style={styles.itemValue}>{transaction.value}</Text>
-          </View>          
-        </View>
-      )}
+      renderItem={({ item: transaction }) => 
+        <TransactionsListItem 
+          transaction={transaction}
+          category={returnCategory(transaction.category_id)} 
+        />
+      }
     />
   )
 }

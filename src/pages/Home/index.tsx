@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect } from "react"
 import { View, Text } from "react-native"
+import { StackNavigationProp } from '@react-navigation/stack'
 
 import api from "../../services/api"
 
@@ -9,10 +10,11 @@ import HomeHeader from "../../components/HomeHeader"
 import TransactionsList from "../../components/TransactionsList"
 
 type Transaction = {
-  id: string
-  title: string
-  value: number
-  category_id: string
+  id: string;
+  title: string;
+  value: number;
+  category_id: string;
+  type: string;
 }
 
 type Balance = {
@@ -26,7 +28,11 @@ type Category = {
   title: string;
 }
 
-const Home: FC = () => {
+type AppProps = {
+  navigation: StackNavigationProp<any>
+}
+
+const Home: FC<AppProps> = ({ navigation }) => {
   const [transactions, setTransactions] = useState<[Transaction]>();
   const [balance, setBalance] = useState<Balance>();
   const [categories, setCategories] = useState<[Category]>();
@@ -46,13 +52,17 @@ const Home: FC = () => {
     setCategories(response.data);
   }
 
+  function goToCreateScreen() {
+    navigation.navigate('Create');
+  }
+
   useEffect(() => {
     fetchTransactionsAndBalance();
     fetchCategories();
   }, [])
   return (
     <>
-      <HomeHeader balance={balance}/>
+      <HomeHeader balance={balance} goToCreateScreen={goToCreateScreen}/>
 
       <View style={styles.container}>
         <View style={styles.pageTitles}>

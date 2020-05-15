@@ -1,10 +1,17 @@
 import React, { FC } from 'react';
-import { createStackNavigator } from '@react-navigation/stack'
+import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'
+
+type AppStackParamList = {
+  Home: undefined;
+  Create: undefined;
+}
+
+// type HomeScreenNavigationProp = StackNavigationProp<AppStackParamList, 'Home'>
 
 import Home from '../pages/Home'
 import CreateTransaction from '../pages/CreateTransaction'
 
-const AppStack = createStackNavigator()
+const AppStack = createStackNavigator<AppStackParamList>()
 
 const AppRoutes: FC = () => (
   <AppStack.Navigator headerMode='none'>
