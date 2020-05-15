@@ -20,6 +20,8 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
 
+  inputGroup: {},
+
   input: {
     backgroundColor: '#fff',
     height: 55,
@@ -39,20 +41,21 @@ const styles = StyleSheet.create({
   button: {
     padding: 20,
     paddingHorizontal: 40,
+    borderRadius: 5,
   },
 
   incomeButton: {
-    backgroundColor: '#2dc455'
+    backgroundColor: '#37C988'
   },
 
   buttonText: {
     color: '#fff',
     fontFamily: 'Helvetica-Medium',
-    fontSize: 15,
+    fontSize: 16,
   },
 
   outcomeButton: {
-    backgroundColor: 'red'
+    backgroundColor: '#FF495C'
   },
 });
 

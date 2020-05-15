@@ -26,6 +26,7 @@ const categoryIcons = [
   {name: 'Recebimentos', icon: 'credit-card'},
   {name: 'Celular', icon: 'smartphone'},
   {name: 'Contas', icon: 'receipt'},
+  {name: 'Transferências', icon: 'forward'},
 ]
 
 const TransactionsList: FC<AppProps> = ({ transactions, categories }) => {

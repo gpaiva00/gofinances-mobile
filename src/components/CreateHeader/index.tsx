@@ -1,15 +1,21 @@
 import React, { FC } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native'
+import { StackNavigationProp } from '@react-navigation/stack'
 import { MaterialIcons } from '@expo/vector-icons'
 
 import styles from './styles';
 
-const CreateHeader: FC = () => {
+type AppProps = {
+  handleSave: Function;
+  handleGoBack: Function;
+}
+
+const CreateHeader: FC<AppProps> = ({ handleSave, handleGoBack }) => {
 
   return (
     <View style={styles.header}>
       <TouchableOpacity
-        onPress={() => {}}
+        onPress={() => handleGoBack()}
       >
         <MaterialIcons name='chevron-left' size={30}></MaterialIcons>
       </TouchableOpacity>
@@ -17,7 +23,7 @@ const CreateHeader: FC = () => {
       <Text style={styles.title}>Adicionar</Text>
       
       <TouchableOpacity
-        onPress={() => {}}
+        onPress={() => handleSave()}
       >
           <Text style={styles.saveButtonText}>Salvar</Text>
       </TouchableOpacity>

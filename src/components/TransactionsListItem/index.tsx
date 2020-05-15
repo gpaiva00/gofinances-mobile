@@ -24,7 +24,6 @@ type AppProps = {
 
 const TransactionsListItem: FC<AppProps> = ({ transaction, category }) => {
   
-  console.log(category.iconName)
   return (
     <View style={styles.item}>
       <View style={{ flexDirection: "row" }}>

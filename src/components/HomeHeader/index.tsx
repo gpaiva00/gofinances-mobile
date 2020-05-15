@@ -30,7 +30,7 @@ const HomeHeader: FC<AppProps> = ({ balance, goToCreateScreen }) => (
     <TouchableOpacity
       onPress={() => goToCreateScreen()}
       style={styles.addButton}>
-        <MaterialIcons name='add-circle-outline' size={35}></MaterialIcons>
+        <MaterialIcons name='add-circle' size={45}></MaterialIcons>
     </TouchableOpacity>
   </View>
 )

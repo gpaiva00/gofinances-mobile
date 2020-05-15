@@ -19,12 +19,12 @@ const styles = StyleSheet.create({
   },
 
   itemTitle: {
-    fontSize: 23,
+    fontSize: 20,
     fontFamily: 'Helvetica-Regular'
   },
 
   itemCategory: {
-    fontSize: 12,
+    fontSize: 14,
     color: '#878787',
     fontFamily: 'Helvetica-Regular'
   },

@@ -1,6 +1,7 @@
-import React, { FC, useState, useEffect } from "react"
+import React, { FC, useState, useEffect, useContext } from "react"
 import { View, Text } from "react-native"
 import { StackNavigationProp } from '@react-navigation/stack'
+import { AppContext } from '../../contexts/AppContext'
 
 import api from "../../services/api"
 
@@ -36,7 +37,7 @@ const Home: FC<AppProps> = ({ navigation }) => {
   const [transactions, setTransactions] = useState<[Transaction]>();
   const [balance, setBalance] = useState<Balance>();
   const [categories, setCategories] = useState<[Category]>();
-
+  const { refresh, setRefresh } = useContext(AppContext);
 
   async function fetchTransactionsAndBalance() {
     const {
@@ -45,6 +46,7 @@ const Home: FC<AppProps> = ({ navigation }) => {
 
     setTransactions(transactions);
     setBalance(balance);
+    setRefresh(false);
   }
 
   async function fetchCategories() {
@@ -59,7 +61,8 @@ const Home: FC<AppProps> = ({ navigation }) => {
   useEffect(() => {
     fetchTransactionsAndBalance();
     fetchCategories();
-  }, [])
+  }, [refresh]);
+
   return (
     <>
       <HomeHeader balance={balance} goToCreateScreen={goToCreateScreen}/>
