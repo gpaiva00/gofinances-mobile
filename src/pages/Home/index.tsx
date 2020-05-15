@@ -53,7 +53,7 @@ const Home: FC<AppProps> = ({ navigation }) => {
   }
 
   function goToCreateScreen() {
-    navigation.navigate('Create');
+    navigation.navigate('Create', { categories });
   }
 
   useEffect(() => {
