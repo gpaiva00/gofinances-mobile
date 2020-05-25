@@ -15,9 +15,9 @@ type Transaction = {
   id: string;
   title: string;
   value: number;
-  category_id: string;
   type: string;
   category: Category;
+  created_at: Date;
 }
 
 type Balance = {
@@ -64,7 +64,7 @@ const Home: FC<AppProps> = ({ navigation }) => {
       <View style={styles.container}>
         <View style={styles.pageTitles}>
           <Text style={styles.transactionsTitle}>Transações</Text>
-          <Text style={styles.currentMonthLabel}>Maio</Text>
+          {/* <Text style={styles.currentMonthLabel}>Maio</Text> */}
         </View>
 
       <View style={styles.tilesContainer}>

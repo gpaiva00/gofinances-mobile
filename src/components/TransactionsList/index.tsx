@@ -7,9 +7,9 @@ type Transaction = {
   id: string;
   title: string;
   value: number;
-  category_id: string;
   type: string;
   category: Category;
+  created_at: Date;
 }
 
 type Category = {

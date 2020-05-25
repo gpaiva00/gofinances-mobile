@@ -3,6 +3,7 @@ import NumberFormat from 'react-number-format';
 import { View, Text, TouchableWithoutFeedback, Alert } from "react-native"
 import { AppContext } from '../../contexts/AppContext';
 import CategoryIcon from '../CategoryIcon';
+import formatDate from '../../utils/formatDate';
 
 import api from  '../../services/api'
 
@@ -12,9 +13,9 @@ type Transaction = {
   id: string;
   title: string;
   value: number;
-  category_id: string;
   type: string;
   category: Category;
+  created_at: Date;
 }
 
 type Category = {
@@ -65,23 +66,27 @@ const TransactionsListItem: FC<AppProps> = ({ transaction }) => {
         </View>
 
         <View style={styles.itemValueContent}>
-          <Text style={styles.itemCurrency}>R$ </Text>
-          <Text style={styles.itemValue}>
-            <NumberFormat
-              value={Number(transaction.value)}
-              displayType={'text'}
-              decimalSeparator=','
-              thousandSeparator='.'
-              decimalScale={2}
-              fixedDecimalScale={true}
-              renderText={value => (
-                <Text>
-                  {transaction.type === 'outcome' && '- '}
-                  {value}
-                </Text>
-              )}
-            />
-          </Text>
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={styles.itemCurrency}>R$ </Text>
+            <Text style={styles.itemValue}>
+              <NumberFormat
+                value={Number(transaction.value)}
+                displayType={'text'}
+                decimalSeparator=','
+                thousandSeparator='.'
+                decimalScale={2}
+                fixedDecimalScale={true}
+                renderText={value => (
+                  <Text>
+                    {transaction.type === 'outcome' && '- '}
+                    {value}
+                  </Text>
+                )}
+              />
+            </Text>
+          </View>
+        
+          <Text style={styles.itemDate}>{formatDate(new Date(transaction.created_at))}</Text>
         </View>
       </View>
     </TouchableWithoutFeedback>

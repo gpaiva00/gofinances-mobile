@@ -32,8 +32,9 @@ const styles = StyleSheet.create({
   },
 
   itemValueContent: {
-    flexDirection: 'row',
-    alignItems: 'center'
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end'
   },
 
   itemCurrency: {
@@ -44,6 +45,12 @@ const styles = StyleSheet.create({
 
   itemValue: {
     fontSize: 16,
+    fontFamily: 'Helvetica-Regular'
+  },
+
+  itemDate: {
+    fontSize: 12,
+    color: '#878787',
     fontFamily: 'Helvetica-Regular'
   },
 
