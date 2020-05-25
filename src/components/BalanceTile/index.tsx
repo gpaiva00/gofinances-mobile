@@ -29,6 +29,8 @@ const BalanceTile: FC<BalanceProps> = ({ title, value, type }) => {
         displayType={'text'}
         decimalSeparator=','
         thousandSeparator='.'
+        decimalScale={2}
+        fixedDecimalScale={true}
         renderText={value => (
           <Text>
             R$ {value}

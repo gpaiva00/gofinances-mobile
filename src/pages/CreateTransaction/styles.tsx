@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
   },
   
   content: {
+    flex: 1,
     paddingTop: 60,
     paddingHorizontal: 50,
   },
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 150,
+    width: '48%',
     backgroundColor: '#969696',
   },
 

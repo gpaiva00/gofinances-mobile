@@ -30,6 +30,8 @@ const HomeHeader: FC<AppProps> = ({ balance, goToCreateScreen }) => (
           displayType={'text'}
           decimalSeparator=','
           thousandSeparator='.'
+          decimalScale={2}
+          fixedDecimalScale={true}
           renderText={(value) => <Text style={styles.balanceValue}> {value}</Text>}
         />
       </Text>

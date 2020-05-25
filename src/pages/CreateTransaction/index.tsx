@@ -1,5 +1,5 @@
 import React, { FC, useState, useContext, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ToastAndroid } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ToastAndroid, KeyboardAvoidingView, Platform } from 'react-native';
 import Autocomplete from 'react-native-dropdown-autocomplete-textinput';
 import { RouteProp } from '@react-navigation/native'
 import api from '../../services/api';
@@ -75,13 +75,21 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
         handleGoBack={() => navigation.goBack()}
       />
       
-      <View style={styles.container}>
+      <KeyboardAvoidingView
+        behavior={Platform.select({
+          ios: 'padding',
+          android: 'height',
+          web: 'position'
+        })}
+        style={styles.container}
+        >
 
         <View style={styles.content}>
           
           <View style={styles.inputGroup}>
             <Text style={styles.label}>Título</Text>
             <TextInput 
+              autoFocus={true}
               style={[styles.input]}
               onChangeText={(text) => setTitle(text) }
               value={title}
@@ -135,7 +143,7 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
             </View>
           </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </>
   );
 }

@@ -67,10 +67,12 @@ const TransactionsListItem: FC<AppProps> = ({ transaction }) => {
         <Text style={styles.itemCurrency}>R$ </Text>
         <Text style={styles.itemValue}>
         <NumberFormat
-          value={transaction.value}
+          value={Number(transaction.value)}
           displayType={'text'}
           decimalSeparator=','
           thousandSeparator='.'
+          decimalScale={2}
+          fixedDecimalScale={true}
           renderText={value => (
             <Text>
               {transaction.type === 'outcome' && '- '}
