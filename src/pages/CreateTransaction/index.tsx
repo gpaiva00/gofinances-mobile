@@ -16,6 +16,7 @@ import styles from './styles';
 
 import CreateHeader from '../../components/CreateHeader';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { AxiosError } from 'axios';
 
 type Category = {
   title: string;
@@ -31,6 +32,11 @@ type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'Profile'>;
 type AppProps = {
   route: ProfileScreenRouteProp;
   navigation: StackNavigationProp<any>
+}
+
+type ServerError = {
+  message: string;
+  status: string;
 }
 
 const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
@@ -63,13 +69,18 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
       type
     });
 
+    // if (response.status === 400) throw new Error(response)
+
     if (response.status === 200) {
       setRefresh(true);
       navigation.goBack()
     }
    } catch (error) {
-    Alert.alert('Erro', 'Desculpe, houve um erro ao salvar. Tente mais tarde');
-    console.log(error);
+     const axiosError = error as AxiosError<ServerError>
+     const errorMessage = axiosError.response?.data.message 
+      || 'Houve um erro. Tente mais tarde';
+      
+     ToastAndroid.show(errorMessage, ToastAndroid.SHORT);
    }
   }
 

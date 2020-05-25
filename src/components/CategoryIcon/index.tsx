@@ -14,6 +14,12 @@ const CategoryIcon: FC<CategoryProps> = ({ title }) => {
       
       case 'Vendas':
         return (<FontAwesome5 name="handshake" size={30} />)
+      
+      case 'Transferências':
+        return (<FontAwesome5 name="exchange-alt" size={30} />)
+
+      case 'Contas':
+        return (<FontAwesome5 name="scroll" size={30} />)
   
       case 'Celular':
       case 'Tecnologia':
@@ -25,10 +31,13 @@ const CategoryIcon: FC<CategoryProps> = ({ title }) => {
       case 'Food':
       case 'Comida':
       case 'Alimentação':
-          return (<FontAwesome5 name="utensils" size={30} />)
+        return (<FontAwesome5 name="utensils" size={30} />)
+
+      case 'Recebimentos':
+        return (<FontAwesome5 name="hand-holding-usd" size={30} />)
   
       default:
-        return (<FontAwesome5 name="credit-card" size={30} />)
+        return (<FontAwesome5 name="dollar-sign" size={30} />)
     }
   }
     

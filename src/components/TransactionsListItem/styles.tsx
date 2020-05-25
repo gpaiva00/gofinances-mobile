@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: 15,
+    paddingVertical: 20,
     // paddingHorizontal: 10,
   },
 
@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
 
   itemTextContent: {
     paddingStart: 10,
+    maxWidth: 170,
   },
 
   itemTitle: {
