@@ -21,16 +21,18 @@
 
 # :rocket: Features
 
- Now you can see how much you earn and spend during the month
- The app warns you if you are able to do next spend
- Organize your transactions
- Easily identify your transactions with beautiful icons
- Create your own transaction category. The app creates the icon for you
+💸 Now you can see how much you earn and spend during the month
+
+✋🏽 The app warns you if you are able to do next spend
+ 
+😍 Easily identify your transactions with beautiful icons
+ 
+💡 Create your own transaction category. The app creates the icon for you
 
 # :outbox_tray: Installation
 > This app was made with Expo. So you'll need to get <a href="https://docs.expo.io/workflow/expo-cli/" target="_blank">expo-cli</a> before start.
 
-Open your terminal
+💻 Open your terminal
 
 Type command below to clone this repo via HTTPS:
 ```bash
