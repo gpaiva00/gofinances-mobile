@@ -3,20 +3,17 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: "space-around",
     alignItems: 'center'
   },
   
   content: {
     paddingTop: 60,
     paddingHorizontal: 50,
-    // alignItems: 'center',
-    // justifyContent: 'space-between',
   },
 
   label: {
-    fontSize: 15,
-    fontFamily: 'Helvetica-Bold',
+    fontSize: 18,
+    fontFamily: 'Helvetica-ExtraBold',
     marginBottom: 8,
   },
 
@@ -25,7 +22,6 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: '#fff',
     height: 55,
-    // width: '100%',
     padding: 10,
     borderRadius: 5,
     borderWidth: 0.2,
@@ -40,12 +36,16 @@ const styles = StyleSheet.create({
 
   button: {
     padding: 20,
-    paddingHorizontal: 40,
     borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 150,
+    backgroundColor: '#969696',
   },
 
-  incomeButton: {
-    backgroundColor: '#37C988'
+  incomeButtonActive: {
+    backgroundColor: '#37C988',
+    fontWeight: 'bold',
   },
 
   buttonText: {
@@ -54,8 +54,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 
-  outcomeButton: {
-    backgroundColor: '#FF495C'
+  outcomeButtonActive: {
+    backgroundColor: '#c53030',
+    fontWeight: 'bold',
   },
 });
 

@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingVertical: 20,
+    // paddingHorizontal: 10,
   },
 
   itemContent: {
@@ -15,7 +16,7 @@ const styles = StyleSheet.create({
   },
 
   itemTextContent: {
-    paddingStart: 15,
+    paddingStart: 10,
   },
 
   itemTitle: {
@@ -44,6 +45,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'Helvetica-Regular'
   },
+
 })
 
 export default styles;

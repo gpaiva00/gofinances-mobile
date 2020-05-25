@@ -16,6 +16,7 @@ type Transaction = {
   value: number;
   category_id: string;
   type: string;
+  category: Category;
 }
 
 type Balance = {
@@ -36,7 +37,6 @@ type AppProps = {
 const Home: FC<AppProps> = ({ navigation }) => {
   const [transactions, setTransactions] = useState<[Transaction]>();
   const [balance, setBalance] = useState<Balance>();
-  const [categories, setCategories] = useState<[Category]>();
   const { refresh, setRefresh } = useContext(AppContext);
 
   async function fetchTransactionsAndBalance() {
@@ -49,23 +49,16 @@ const Home: FC<AppProps> = ({ navigation }) => {
     setRefresh(false);
   }
 
-  async function fetchCategories() {
-    const response = await api.get('categories');
-    setCategories(response.data);
-  }
-
-  function goToCreateScreen() {
-    navigation.navigate('Create', { categories });
-  }
-
   useEffect(() => {
     fetchTransactionsAndBalance();
-    fetchCategories();
   }, [refresh]);
 
   return (
     <>
-      <HomeHeader balance={balance} goToCreateScreen={goToCreateScreen}/>
+      <HomeHeader 
+        balance={balance} 
+        goToCreateScreen={() => navigation.navigate('Create')}
+      />
 
       <View style={styles.container}>
         <View style={styles.pageTitles}>
@@ -73,7 +66,7 @@ const Home: FC<AppProps> = ({ navigation }) => {
           <Text style={styles.currentMonthLabel}>Maio</Text>
         </View>
 
-        <TransactionsList transactions={transactions} categories={categories} />
+        <TransactionsList transactions={transactions} />
       </View>
     </>
   )

@@ -1,5 +1,5 @@
-import React, { FC, useState, useContext } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import React, { FC, useState, useContext, useEffect } from 'react';
+import { View, Text, TextInput, TouchableOpacity, ToastAndroid } from 'react-native';
 import Autocomplete from 'react-native-dropdown-autocomplete-textinput';
 import { RouteProp } from '@react-navigation/native'
 import api from '../../services/api';
@@ -31,10 +31,22 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
   const [title, setTitle] = useState('');
   const [value, setValue] = useState(0);
   const [categoryName, setCategoryName] = useState('');
+  const [categories, setCategories] = useState<[Category]>();
   const [type, setType] = useState('');
   const { refresh, setRefresh } = useContext(AppContext);
 
+  async function fetchCategories() {
+    const response = await api.get('categories');
+    setCategories(response.data);
+  }
+
   async function handleSave() {
+
+    if (!title || !value || !categoryName) {
+      return ToastAndroid.show('Por favor, preencha todos os campos', ToastAndroid.SHORT);
+    }
+
+   try {
     const response = await api.post('transactions', {
       title,
       value,
@@ -45,8 +57,16 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
     if (response.status === 200) {
       setRefresh(true);
       navigation.goBack()
-    };
+    }
+   } catch (error) {
+    Alert.alert('Erro', 'Desculpe, houve um erro ao salvar. Tente mais tarde');
+    console.log(error);
+   }
   }
+
+  useEffect(() => {
+    fetchCategories();
+  }, [])
 
   return (
     <>
@@ -74,7 +94,7 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
           <View style={styles.inputGroup}>
             <Text style={styles.label}>Categoria</Text>
             <Autocomplete 
-              data={route.params.categories}
+              data={categories}
               textInputStyle={[styles.input]}
               displayKey='title'
               placeholder='Contas, Alimentação'
@@ -101,14 +121,14 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
             <View style={styles.buttonGroup}>
               <TouchableOpacity
                 onPress={() => setType('income')}
-                style={[styles.button, styles.incomeButton]}
+                style={[styles.button, type === 'income' && styles.incomeButtonActive]}
               >
                 <Text style={styles.buttonText}>Entrada</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
                 onPress={() => setType('outcome')}
-                style={[styles.button, styles.outcomeButton]}
+                style={[styles.button, type === 'outcome' && styles.outcomeButtonActive]}
               >
                 <Text style={styles.buttonText}>Saída</Text>
               </TouchableOpacity>

@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
   balanceCurrency: {
     fontSize: 16,
     color: '#878787',
-    fontFamily: 'Helvetica-Regular'
+    fontFamily: 'Helvetica-Regular',
   },
 
   balanceValue: {
     fontSize: 23,
-    fontFamily: 'Helvetica-ExtraBold'
+    fontFamily: 'Helvetica-ExtraBold',
   },
 
   addButton: {

@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
+import NumberFormat from 'react-number-format';
+
 
 import styles from './styles'
 
@@ -23,7 +25,13 @@ const HomeHeader: FC<AppProps> = ({ balance, goToCreateScreen }) => (
       <Text style={styles.balanceLabel}>Balanço Total</Text>
       <Text style={styles.balanceValueContent}>
         <Text style={styles.balanceCurrency}>R$ </Text>
-        <Text style={styles.balanceValue}>{balance?.total}</Text>
+        <NumberFormat
+          value={balance?.total}
+          displayType={'text'}
+          decimalSeparator=','
+          thousandSeparator='.'
+          renderText={(value) => <Text style={styles.balanceValue}> {value}</Text>}
+        />
       </Text>
     </View>
 
