@@ -18,7 +18,33 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
 
-  inputGroup: {},
+  autocompleteContainer: {
+    flex: 1,
+    left: 0,
+    position: 'absolute',
+    top: 89,
+    zIndex: 1,
+    backgroundColor: '#fff',
+    width: '100%',
+    maxHeight: 200,
+    paddingBottom: 10,
+    borderBottomEndRadius: 5,
+  },
+
+  suggestionItem : { 
+    paddingVertical: 10, 
+    paddingHorizontal: 10,
+    borderBottomWidth: 0.2, 
+    borderBottomColor: '#878787' 
+  },
+
+  suggestionText: {
+    color: '#878787'
+  },
+
+  inputGroup: {
+    marginBottom: 40,
+  },
 
   input: {
     backgroundColor: '#fff',
@@ -26,7 +52,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     borderWidth: 0.2,
-    marginBottom: 40,
   },
 
   buttonGroup: {

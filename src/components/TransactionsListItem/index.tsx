@@ -1,6 +1,6 @@
 import React, { FC, useContext } from "react"
 import NumberFormat from 'react-number-format';
-import { View, Text, TouchableOpacity, Alert } from "react-native"
+import { View, Text, TouchableWithoutFeedback, Alert } from "react-native"
 import { AppContext } from '../../contexts/AppContext';
 import CategoryIcon from '../CategoryIcon';
 
@@ -50,39 +50,41 @@ const TransactionsListItem: FC<AppProps> = ({ transaction }) => {
       ]
     )
   }
-  
+   
   return (
-    <TouchableOpacity
+    <TouchableWithoutFeedback
       onLongPress={showAlert}
-      style={styles.item}>
-      <View style={{ flexDirection: "row", alignItems: 'center' }}>
-        <CategoryIcon title={transaction.category.title} />
-        <View style={styles.itemTextContent}>
-          <Text style={styles.itemTitle}>{transaction.title}</Text>
-          <Text style={styles.itemCategory}>{transaction.category.title}</Text>
+      >
+      <View style={styles.item}>
+        <View style={{ flexDirection: "row", alignItems: 'center' }}>
+          <CategoryIcon title={transaction.category.title} />
+          <View style={styles.itemTextContent}>
+            <Text style={styles.itemTitle}>{transaction.title}</Text>
+            <Text style={styles.itemCategory}>{transaction.category.title}</Text>
+          </View>
+        </View>
+
+        <View style={styles.itemValueContent}>
+          <Text style={styles.itemCurrency}>R$ </Text>
+          <Text style={styles.itemValue}>
+            <NumberFormat
+              value={Number(transaction.value)}
+              displayType={'text'}
+              decimalSeparator=','
+              thousandSeparator='.'
+              decimalScale={2}
+              fixedDecimalScale={true}
+              renderText={value => (
+                <Text>
+                  {transaction.type === 'outcome' && '- '}
+                  {value}
+                </Text>
+              )}
+            />
+          </Text>
         </View>
       </View>
-
-      <View style={styles.itemValueContent}>
-        <Text style={styles.itemCurrency}>R$ </Text>
-        <Text style={styles.itemValue}>
-        <NumberFormat
-          value={Number(transaction.value)}
-          displayType={'text'}
-          decimalSeparator=','
-          thousandSeparator='.'
-          decimalScale={2}
-          fixedDecimalScale={true}
-          renderText={value => (
-            <Text>
-              {transaction.type === 'outcome' && '- '}
-              {value}
-            </Text>
-          )}
-        />
-      </Text>
-      </View>
-    </TouchableOpacity>
+    </TouchableWithoutFeedback>
   )
 }
 

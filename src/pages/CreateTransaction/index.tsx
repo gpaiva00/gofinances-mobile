@@ -1,6 +1,12 @@
 import React, { FC, useState, useContext, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ToastAndroid, KeyboardAvoidingView, Platform } from 'react-native';
-import Autocomplete from 'react-native-dropdown-autocomplete-textinput';
+import { 
+  View, 
+  Text, 
+  TextInput, 
+  TouchableOpacity, 
+  ToastAndroid, 
+  KeyboardAvoidingView, Platform, FlatList } from 'react-native';
+
 import { RouteProp } from '@react-navigation/native'
 import api from '../../services/api';
 
@@ -31,10 +37,13 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
   const [title, setTitle] = useState('');
   const [value, setValue] = useState(0);
   const [categoryName, setCategoryName] = useState('');
-  const [categories, setCategories] = useState<[Category]>();
+  const [categories, setCategories] = useState([] as Category[]);
+  const [suggestions, setSuggestions] = useState([] as Category[]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const [type, setType] = useState('');
   const { refresh, setRefresh } = useContext(AppContext);
 
+  
   async function fetchCategories() {
     const response = await api.get('categories');
     setCategories(response.data);
@@ -63,6 +72,20 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
     console.log(error);
    }
   }
+
+  function handleSearchCategories(value: string): void {
+    const newValue = value.trim().toLowerCase();
+
+    const filtered = categories.filter(
+      (category) =>
+        category.title.toLowerCase().slice(0, newValue.length) ===
+        newValue
+    );
+    
+    setSuggestions(filtered);
+    setCategoryName(value);
+  }
+
 
   useEffect(() => {
     fetchCategories();
@@ -101,16 +124,38 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
 
           <View style={styles.inputGroup}>
             <Text style={styles.label}>Categoria</Text>
-            <Autocomplete 
-              data={categories}
-              textInputStyle={[styles.input]}
-              displayKey='title'
-              placeholder='Contas, Alimentação'
-              onSelect={(value: Category) => setCategoryName(value.title)}
+            <TextInput 
+              style={[styles.input]}
+              onChangeText={handleSearchCategories}
+              value={categoryName}
+              placeholder='Contas, Alimentação...'
+              clearButtonMode="always"
+              // onBlur={() => setShowSuggestions(false)}
+              onFocus={() => setShowSuggestions(true)}
+              onSubmitEditing={() => setShowSuggestions(false)}
             />
+
+            {
+              showSuggestions && (
+                <FlatList
+                  data={suggestions}
+                  style={styles.autocompleteContainer}
+                  renderItem={({ item }) => (
+                    <TouchableOpacity 
+                      onPress={() => {
+                        setCategoryName(item.title);
+                        setShowSuggestions(false);
+                      }}
+                      style={styles.suggestionItem}>
+                        <Text style={styles.suggestionText}>{item.title}</Text>
+                    </TouchableOpacity>
+                  )}
+                />
+              )
+            }
           </View>
 
-          <View style={styles.inputGroup}>
+          <View style={[styles.inputGroup]}>
             <Text style={styles.label}>Valor</Text>
             <TextInput 
               style={[styles.input]}
