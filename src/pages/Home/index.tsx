@@ -9,6 +9,7 @@ import styles from "./styles"
 
 import HomeHeader from "../../components/HomeHeader"
 import TransactionsList from "../../components/TransactionsList"
+import BalanceTile from '../../components/BalanceTile';
 
 type Transaction = {
   id: string;
@@ -65,6 +66,20 @@ const Home: FC<AppProps> = ({ navigation }) => {
           <Text style={styles.transactionsTitle}>Transações</Text>
           <Text style={styles.currentMonthLabel}>Maio</Text>
         </View>
+
+      <View style={styles.tilesContainer}>
+        <BalanceTile
+          title="Entradas"
+          value={balance?.income}
+          type="income"
+        />
+
+        <BalanceTile
+          title="Saídas"
+          value={balance?.outcome}
+          type="outcome"
+        />
+      </View>
 
         <TransactionsList transactions={transactions} />
       </View>

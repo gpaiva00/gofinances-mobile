@@ -20,6 +20,13 @@ const styles = StyleSheet.create({
     color: '#878787',
     fontFamily: 'Helvetica-Regular'
   },
+
+  tilesContainer: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginBottom: 10, 
+  },
 })
 
 export default styles;
