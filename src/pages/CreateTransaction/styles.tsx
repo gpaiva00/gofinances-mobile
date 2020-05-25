@@ -27,12 +27,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     width: '100%',
     maxHeight: 200,
-    paddingBottom: 10,
+    // paddingBottom: 10,
+    borderTopWidth: 0,
+    borderWidth: 0.2,
+    borderColor: '#878787',
     borderBottomEndRadius: 5,
   },
 
   suggestionItem : { 
-    paddingVertical: 10, 
+    paddingVertical: 15, 
     paddingHorizontal: 10,
     borderBottomWidth: 0.2, 
     borderBottomColor: '#878787' 
