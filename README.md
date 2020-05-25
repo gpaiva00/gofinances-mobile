@@ -10,7 +10,7 @@
 > Handsome app that help you to manage your bank transactions
 
 <p align="center">
-  <img src="./src/assets/demo.gif?raw=true" />
+  <img width="300"src="./src/assets/demo.gif?raw=true" />
 </p>
 
 # :page_facing_up: Table of Contents
