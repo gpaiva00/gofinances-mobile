@@ -66,7 +66,7 @@ const TransactionsListItem: FC<AppProps> = ({ transaction }) => {
         </View>
 
         <View style={styles.itemValueContent}>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center',marginBottom: 5 }}>
             <Text style={styles.itemCurrency}>R$ </Text>
             <Text style={styles.itemValue}>
               <NumberFormat

@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: 20,
+    marginVertical: 20,
     // paddingHorizontal: 10,
   },
 
@@ -16,13 +16,14 @@ const styles = StyleSheet.create({
   },
 
   itemTextContent: {
-    paddingStart: 10,
+    marginStart: 10,
     maxWidth: 170,
   },
 
   itemTitle: {
     fontSize: 18,
-    fontFamily: 'Helvetica-Regular'
+    marginBottom: 5,
+    fontFamily: 'Helvetica-Medium'
   },
 
   itemCategory: {
@@ -34,7 +35,6 @@ const styles = StyleSheet.create({
   itemValueContent: {
     flexDirection: 'column',
     alignItems: 'flex-end',
-    justifyContent: 'flex-end'
   },
 
   itemCurrency: {
@@ -45,13 +45,13 @@ const styles = StyleSheet.create({
 
   itemValue: {
     fontSize: 16,
-    fontFamily: 'Helvetica-Regular'
+    fontFamily: 'Helvetica-Medium'
   },
 
   itemDate: {
     fontSize: 12,
     color: '#878787',
-    fontFamily: 'Helvetica-Regular'
+    fontFamily: 'Helvetica-Regular',
   },
 
 })
