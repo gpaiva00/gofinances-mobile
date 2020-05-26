@@ -8,36 +8,37 @@ interface CategoryProps {
 
 const CategoryIcon: FC<CategoryProps> = ({ title }) => {
   function returnCategoryIcon(title: string) {
+    const iconSize = 28;
     switch (title) {
       case 'Compras':
-        return (<FontAwesome5 name="shopping-bag" size={30} />)
+        return (<FontAwesome5 name="shopping-bag" size={iconSize} />)
       
       case 'Vendas':
-        return (<FontAwesome5 name="handshake" size={30} />)
+        return (<FontAwesome5 name="handshake" size={iconSize} />)
       
       case 'Transferências':
-        return (<FontAwesome5 name="exchange-alt" size={30} />)
+        return (<FontAwesome5 name="exchange-alt" size={iconSize} />)
 
       case 'Contas':
-        return (<FontAwesome5 name="scroll" size={30} />)
+        return (<FontAwesome5 name="scroll" size={iconSize} />)
   
       case 'Celular':
       case 'Tecnologia':
-        return (<FontAwesome5 name="mobile-alt" size={40} />)
+        return (<FontAwesome5 name="mobile-alt" size={iconSize} />)
   
       case 'Casa':
-        return (<FontAwesome5 name="home" size={30} />)
+        return (<FontAwesome5 name="home" size={iconSize} />)
   
       case 'Food':
       case 'Comida':
       case 'Alimentação':
-        return (<FontAwesome5 name="utensils" size={30} />)
+        return (<FontAwesome5 name="utensils" size={iconSize} />)
 
       case 'Recebimentos':
-        return (<FontAwesome5 name="hand-holding-usd" size={30} />)
+        return (<FontAwesome5 name="hand-holding-usd" size={iconSize} />)
   
       default:
-        return (<FontAwesome5 name="dollar-sign" size={30} />)
+        return (<FontAwesome5 name="dollar-sign" size={iconSize} />)
     }
   }
     
@@ -45,8 +46,12 @@ const CategoryIcon: FC<CategoryProps> = ({ title }) => {
 
   return (
     <View style={{
-      // alignItems: 'center',
-      width: 40
+      backgroundColor: '#fff',
+      borderRadius: 50,
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 45,
+      height: 45,
     }}>
       {returnCategoryIcon(title)}
     </View>
