@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   itemTitle: {
     fontSize: 18,
     marginBottom: 5,
-    fontFamily: 'Helvetica-Medium'
+    fontFamily: 'Helvetica-Regular'
   },
 
   itemCategory: {
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 
   itemValue: {
     fontSize: 16,
-    fontFamily: 'Helvetica-Medium'
+    fontFamily: 'Helvetica-Regular'
   },
 
   itemDate: {

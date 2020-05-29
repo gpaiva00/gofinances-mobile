@@ -17,13 +17,14 @@ const BalanceTile: FC<BalanceProps> = ({ title, value, type }) => {
   return (
     <View style={styles.tile}>
       <View style={styles.tileHeader}>
-        <Text style={styles.tileTitle}>{title}</Text>
+        <Text style={styles.tileTitle}>{title}</Text>   
         <FontAwesome5 
           name={ type === 'income' ? "arrow-circle-up" : "arrow-circle-down" }
           size={20}
           color={ type === 'income' ? "#37C988" : "#c53030" }
           />
       </View>
+      
       <NumberFormat
         value={value}
         displayType={'text'}

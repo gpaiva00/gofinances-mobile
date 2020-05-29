@@ -4,10 +4,11 @@ const styles = StyleSheet.create({
 
   tile: {
     justifyContent: 'space-between',
+    alignItems: 'stretch',
     flexDirection: 'column',
     backgroundColor: '#fff',
     paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingHorizontal: 16,
     borderRadius: 8,
     width: '48%',
   },
@@ -17,10 +18,9 @@ const styles = StyleSheet.create({
   },
 
   tileHeader: {
-    justifyContent: 'space-between',
-    alignItems: 'center',
     flexDirection: 'row',
-    paddingBottom: 8,
+    justifyContent: 'space-between',
+    paddingBottom: 5,
   },
 
   tileValue: {
