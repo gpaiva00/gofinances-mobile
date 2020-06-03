@@ -9,9 +9,10 @@ import { Feather } from '@expo/vector-icons'
 import styles from "./styles"
 
 import HomeHeader from "../../components/HomeHeader"
+import TilesList from '../../components/TilesList';
 import TransactionsList from "../../components/TransactionsList"
-import BalanceTile from '../../components/BalanceTile';
-import MonthPicker from '../../components/MonthPicker';
+
+// import MonthPicker from '../../components/MonthPicker';
 
 type Transaction = {
   id: string;
@@ -127,19 +128,7 @@ const Home: FC<AppProps> = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.tilesContainer}>
-          <BalanceTile
-            title="Entradas"
-            value={balance?.income}
-            type="income"
-          />
-
-          <BalanceTile
-            title="Saídas"
-            value={balance?.outcome}
-            type="outcome"
-          />
-        </View>
+        <TilesList balance={balance} />
 
         <TransactionsList transactions={transactions} />
 

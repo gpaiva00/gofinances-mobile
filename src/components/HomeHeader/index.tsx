@@ -1,7 +1,6 @@
 import React, { FC } from "react"
-import { View, Text, Button, TouchableOpacity } from "react-native"
+import { View, Text, Image, TouchableOpacity } from "react-native"
 import { MaterialIcons } from "@expo/vector-icons"
-import NumberFormat from "react-number-format"
 import { useAuth } from "../../hooks/Auth"
 
 import styles from "./styles"
@@ -18,27 +17,25 @@ type AppProps = {
 }
 
 const HomeHeader: FC<AppProps> = ({ balance, goToCreateScreen }) => {
-  const { signOut } = useAuth()
+  const { signOut, user } = useAuth();
+  
+  function returnUserAvatar() {
+    if(user.avatar)
+      return (<Image source={{ uri: user.avatar }} width={50} />);
+    
+    return (<MaterialIcons name="account-circle" size={50}/>);
+  }
 
   return (
     <View style={styles.header}>
-      <Button title="Sair" onPress={signOut}></Button>
-
-      <View style={styles.balanceContent}>
-        <Text style={styles.balanceLabel}>Balanço Total</Text>
-        <Text style={styles.balanceValueContent}>
-          <Text style={styles.balanceCurrency}>R$ </Text>
-          <NumberFormat
-            value={balance?.total}
-            displayType={"text"}
-            decimalSeparator=","
-            thousandSeparator="."
-            decimalScale={2}
-            fixedDecimalScale={true}
-            renderText={(value) => <Text style={styles.balanceValue}> {value}</Text>}
-          />
-        </Text>
-      </View>
+      <TouchableOpacity
+        style={styles.userInfoButton}
+        onPress={() => {}}
+      >
+        {returnUserAvatar()}
+        
+        <Text style={styles.userName}>{user.name.split(' ')[0]}</Text>
+      </TouchableOpacity>
 
       <TouchableOpacity onPress={() => goToCreateScreen()} style={styles.addButton}>
         <MaterialIcons name="add-circle" size={50}></MaterialIcons>

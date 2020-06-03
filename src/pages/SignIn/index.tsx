@@ -1,10 +1,17 @@
 import React, { FC, useState } from "react"
-import { View, TouchableOpacity, ToastAndroid, ActivityIndicator, ImageBackground, Text } from "react-native"
-import * as Google from "expo-google-app-auth";
+import {
+  View,
+  TouchableOpacity,
+  ToastAndroid,
+  ActivityIndicator,
+  ImageBackground,
+  Text,
+} from "react-native"
+import * as Google from "expo-google-app-auth"
 
 import { useAuth, User } from "../../hooks/Auth"
 
-import { FontAwesome } from '@expo/vector-icons'
+import { FontAwesome } from "@expo/vector-icons"
 import styles from "./styles"
 import signInBackground from "../../assets/signInBackground.jpg";
 
@@ -37,37 +44,32 @@ const SignIn: FC = () => {
 
   if (loading)
     return (
-      <View style={styles.container}>
-        <ActivityIndicator size={20} color="#878787" />
+      <View style={[styles.container, { justifyContent: 'center' }]}>
+        <ActivityIndicator size={30} color="#fff" />
       </View>
     )
 
   return (
-    // <View style={styles.container}>
     <ImageBackground source={signInBackground} style={styles.backgroundImage}>
       <View style={styles.container}>
-        
         <View style={styles.greetingsContent}>
           <Text style={styles.greetingsTitle}>Seja bem-vindo ao</Text>
-          <Text style={[styles.appName, { fontWeight: 'bold' }]}>Go
-          <Text style={{ fontWeight: 'normal' }}>Finances</Text></Text>
+          <Text style={[styles.appName, { fontWeight: "bold" }]}>
+            Go
+            <Text style={{ fontWeight: "normal" }}>Finances</Text>
+          </Text>
         </View>
 
         <Text style={[styles.greetingsTitle, { lineHeight: 30 }]}>
-          Faça seu cadastro para ter acesso.
-          É rapidinho.
+          Faça seu cadastro para ter acesso. É rapidinho.
         </Text>
 
-        <TouchableOpacity 
-          style={styles.button}
-          onPress={handleSignIn}
-        >
-          <FontAwesome name="google" size={35} color="#000" style={{ marginRight: 20 }}/>
+        <TouchableOpacity style={styles.button} onPress={handleSignIn}>
+          <FontAwesome name="google" size={35} color="#000" style={{ marginRight: 20 }} />
           <Text style={styles.buttonText}>Entrar com Google</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>
-    // </View>
   )
 }
 

@@ -9,20 +9,46 @@ import styles from './styles';
 interface BalanceProps {
   title: string;
   value: number | undefined;
-  type: "income" | "outcome";
+  type: "income" | "outcome" | "total";
 }
 
 const BalanceTile: FC<BalanceProps> = ({ title, value, type }) => {
+
+  function returnTileIcon(type: string) {
+    let name, color;
+
+    switch(type) {
+      case 'income':
+       name = 'arrow-circle-up';
+       color = "#37C988";
+       break;
+      case 'outcome':
+        name = 'arrow-circle-down';
+        color = "#c53030";
+        break;
+      
+      default:
+        name = 'coins';
+        color = '#000';
+        break;
+    }
+
+
+    return (
+      <FontAwesome5 
+        name={name}
+        size={20}
+        color={color}
+      />
+    );
+  }
 
   return (
     <View style={styles.tile}>
       <View style={styles.tileHeader}>
         <Text style={styles.tileTitle}>{title}</Text>   
-        <FontAwesome5 
-          name={ type === 'income' ? "arrow-circle-up" : "arrow-circle-down" }
-          size={20}
-          color={ type === 'income' ? "#37C988" : "#c53030" }
-          />
+        
+        {returnTileIcon(type)}
       </View>
       
       <NumberFormat
@@ -33,7 +59,7 @@ const BalanceTile: FC<BalanceProps> = ({ title, value, type }) => {
         decimalScale={2}
         fixedDecimalScale={true}
         renderText={value => (
-          <Text>
+          <Text style={styles.tileValue}>
             R$ {value}
           </Text>
         )}

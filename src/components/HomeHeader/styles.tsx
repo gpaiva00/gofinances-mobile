@@ -7,43 +7,29 @@ const styles = StyleSheet.create({
       ios: Constants.statusBarHeight + 15,
       android: Constants.statusBarHeight + 15
     }),
-    marginBottom: 20,
+    paddingBottom: 16,
+    paddingHorizontal: 16,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 
-  balanceContent: {
-    justifyContent: 'center',
+  userInfoButton: {
+    flexDirection: 'row',
     alignItems: 'center',
   },
 
-  balanceValueContent: {
-    flexDirection: 'row'
-  },
-
-  balanceLabel: {
-    fontSize: 12,
-    color: '#3a3a3a',
-    fontFamily: 'Helvetica-Regular'
-  },
-
-  balanceCurrency: {
+  userName: {
+    fontFamily: 'Helvetica-Bold',
     fontSize: 16,
-    color: '#878787',
-    fontFamily: 'Helvetica-Regular',
-  },
-
-  balanceValue: {
-    fontSize: 23,
-    fontFamily: 'Helvetica-ExtraBold',
+    paddingLeft: 8
   },
 
   addButton: {
-    position: "absolute",
-    right: 0,
-    paddingTop: 55,
-    paddingRight: 20,
+    // position: "absolute",
+    // right: 0,
+    // paddingTop: 55,
+    // paddingRight: 20,
   },
 })
 

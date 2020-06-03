@@ -10,8 +10,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 16,
     borderRadius: 8,
-    width: '48%',
-    height: 80,
+    width: 150,
+    height: 70,
+    margin: 10,
 
     shadowColor: "#000",
     shadowOffset: {
@@ -35,6 +36,7 @@ const styles = StyleSheet.create({
 
   tileValue: {
     fontFamily: 'Helvetica-Regular',
+    fontSize: 15,
     color: '#363F5F'
   },
 });

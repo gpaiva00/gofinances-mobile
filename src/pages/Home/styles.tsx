@@ -25,13 +25,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Helvetica-Bold'
   },
 
-  tilesContainer: {
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
-    marginBottom: 10,
-  },
-
   monthPicker: {
     position: 'absolute',
     width: '100%',
