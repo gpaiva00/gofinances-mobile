@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
       ios: Constants.statusBarHeight + 15,
       android: Constants.statusBarHeight + 15
     }),
+    marginBottom: 20,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 0,
     paddingTop: 55,
-    paddingRight: 20
+    paddingRight: 20,
   },
 })
 

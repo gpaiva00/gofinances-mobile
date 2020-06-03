@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from '@use-expo/font'
 import { AppLoading } from 'expo'
-import { AppProvider } from './src/contexts/AppContext';
+import MainProvider from './src/hooks';
 
 import Routes from './src/routes/';
 
@@ -20,9 +20,9 @@ const App: FC = () => {
   
   return (
     <NavigationContainer>
-      <AppProvider>
+      <MainProvider>
         <Routes />
-      </AppProvider>
+      </MainProvider>
     </NavigationContainer>
   )
 }

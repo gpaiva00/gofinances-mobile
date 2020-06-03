@@ -1,7 +1,7 @@
 import React, { FC, useContext } from "react"
 import NumberFormat from 'react-number-format';
 import { View, Text, TouchableWithoutFeedback, Alert } from "react-native"
-import { AppContext } from '../../contexts/AppContext';
+import { useApp } from '../../hooks/App';
 import CategoryIcon from '../CategoryIcon';
 import formatDate from '../../utils/formatDate';
 
@@ -27,7 +27,7 @@ type AppProps = {
 }
 
 const TransactionsListItem: FC<AppProps> = ({ transaction }) => {
-  const { setRefresh } = useContext(AppContext);
+  const { setRefresh } = useApp();
 
   async function handleDeleteTransaction() {
     await api.delete(`/transactions/${transaction.id}`);

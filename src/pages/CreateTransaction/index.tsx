@@ -1,4 +1,4 @@
-import React, { FC, useState, useContext, useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { 
   View, 
   Text, 
@@ -10,7 +10,7 @@ import {
 import { RouteProp } from '@react-navigation/native'
 import api from '../../services/api';
 
-import { AppContext } from '../../contexts/AppContext';
+import { useApp } from '../../hooks/App';
 
 import styles from './styles';
 
@@ -47,7 +47,7 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
   const [suggestions, setSuggestions] = useState([] as Category[]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [type, setType] = useState('');
-  const { refresh, setRefresh } = useContext(AppContext);
+  const { refresh, setRefresh } = useApp();
 
   
   async function fetchCategories() {
@@ -112,7 +112,7 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
       <KeyboardAvoidingView
         behavior={Platform.select({
           ios: 'padding',
-          android: 'height',
+          android: 'padding',
           web: 'position'
         })}
         style={styles.container}

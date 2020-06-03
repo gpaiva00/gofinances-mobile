@@ -14,7 +14,9 @@ import CreateTransaction from '../pages/CreateTransaction'
 const AppStack = createStackNavigator<AppStackParamList>()
 
 const AppRoutes: FC = () => (
-  <AppStack.Navigator headerMode='none'>
+  <AppStack.Navigator headerMode='none' screenOptions={
+      {cardStyle: {backgroundColor: '#fff'}}}
+    >
     <AppStack.Screen name="Home" component={Home} />
     <AppStack.Screen name="Create" component={CreateTransaction} />
   </AppStack.Navigator>

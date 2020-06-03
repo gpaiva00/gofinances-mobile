@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 
   itemValue: {
     fontSize: 16,
-    fontFamily: 'Helvetica-Regular'
+    fontFamily: 'Helvetica-Bold'
   },
 
   itemDate: {

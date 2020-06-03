@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect, useContext, useRef } from "react"
 import { View, Text, TouchableOpacity, Animated } from "react-native"
 import { StackNavigationProp } from '@react-navigation/stack'
-import { AppContext } from '../../contexts/AppContext'
+import { useApp } from '../../hooks/App'
 
 import api from "../../services/api"
 
@@ -65,11 +65,12 @@ const Home: FC<AppProps> = ({ navigation }) => {
     const month = new Date().getMonth();
     return months[month];
   });
-  const heightAnimation = useRef(new Animated.Value(0)).current;
-  const { refresh, setRefresh } = useContext(AppContext);
+  const bottomAnimation = useRef(new Animated.Value(0)).current;
+  const { refresh, setRefresh } = useApp();
 
   async function fetchTransactionsAndBalance(month?: number) {
     if (!month) month = months.findIndex(item => item === currentMonth) + 1;
+
     const {
       data: { transactions, balance },
     } = await api.get(`transactions?month=${String(month)}`)
@@ -89,17 +90,17 @@ const Home: FC<AppProps> = ({ navigation }) => {
 
   function fadeIn() {
     // Will change fadeAnim value to 1 in 5 seconds
-    Animated.timing(heightAnimation, {
+    Animated.timing(bottomAnimation, {
       toValue: 0,
-      duration: 300
+      duration: 350
     }).start();
   };
 
   function fadeOut() {
     // Will change fadeAnim value to 0 in 5 seconds
-    Animated.timing(heightAnimation, {
-      toValue: -300,
-      duration: 300
+    Animated.timing(bottomAnimation, {
+      toValue: -350,
+      duration: 350
     }).start();
   };
 
@@ -145,22 +146,17 @@ const Home: FC<AppProps> = ({ navigation }) => {
       </View>
 
       <Animated.View
-        style={
+        style={[styles.monthPicker,
           {
-            position: 'absolute',
-            width: '100%',
-            height: 300,
-            left: 0,
-            bottom: heightAnimation,
-            flexDirection: 'column',
-            backgroundColor: '#fff',
+            bottom: bottomAnimation,
           }
-        }
+        ]}
       >
         <TouchableOpacity
           onPress={fadeOut}
+          style={styles.hidePanelButton}
         >
-          <Feather style={styles.chevDown} name="chevron-down" size={20} />
+          <Feather name="x" size={20} color="#878787" />
         </TouchableOpacity>
         <View style={styles.monthsContent}>
           {months.map((month, index) => (
@@ -168,7 +164,9 @@ const Home: FC<AppProps> = ({ navigation }) => {
               key={index}
               onPress={() => handleSelectMonth(month, index)}
             >
-              <Text style={styles.monthName}>{month}</Text>
+              <View style={[styles.monthButton, currentMonth === month && styles.activeMonth]}>
+                <Text style={[styles.monthName, currentMonth === month && styles.activeMonthName]}>{month}</Text>
+              </View>
             </TouchableOpacity>
           ))}
         </View>

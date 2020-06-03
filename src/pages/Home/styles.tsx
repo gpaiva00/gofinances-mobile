@@ -32,9 +32,26 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 
-  chevDown: {
+  monthPicker: {
+    position: 'absolute',
+    width: '100%',
+    height: 350,
+    left: 0,
+    flexDirection: 'column',
+    backgroundColor: '#fff',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    elevation: 15,
+  },
+
+  hidePanelButton: {
     alignSelf: 'flex-end',
-    marginRight: 10,
+    marginRight: 16,
     marginTop: 10,
   },
 
@@ -49,12 +66,26 @@ const styles = StyleSheet.create({
 
   },
 
+  monthButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 75,
+    width: 75,
+  },
+
+  activeMonth: {
+    borderRadius: 50,
+    backgroundColor: '#000',
+  },
+
+  activeMonthName: {
+    color: '#fff',
+  },
+
   monthName: {
-    textAlign: 'center',
     fontFamily: 'Helvetica-Regular',
     fontSize: 30,
-    padding: 12,
-    color: '#444'
+    color: '#444',
   },
 
   'monthName:last-child': {

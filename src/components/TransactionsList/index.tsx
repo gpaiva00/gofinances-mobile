@@ -22,13 +22,13 @@ type AppProps = {
 }
 
 const TransactionsList: FC<AppProps> = ({ transactions }) => {
-  
+
   return (
     <>
-      {!transactions?.length && 
-        <View style={{ 
-            flex:1, 
-            alignItems: 'center', 
+      {!transactions?.length &&
+        <View style={{
+            flex:1,
+            alignItems: 'center',
             justifyContent: 'center',
           }}>
           <Text
@@ -44,12 +44,13 @@ const TransactionsList: FC<AppProps> = ({ transactions }) => {
 
       <FlatList
         data={transactions}
+        style={{ marginTop: 10, }}
         keyExtractor={(item) => String(item.id)}
         showsVerticalScrollIndicator={false}
-        renderItem={({ item: transaction }) => 
+        renderItem={({ item: transaction }) =>
           <TransactionsListItem transaction={transaction}/>
         }
-      />      
+      />
     </>
   )
 }
