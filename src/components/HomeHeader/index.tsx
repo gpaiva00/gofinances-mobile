@@ -15,9 +15,6 @@ const HomeHeader: FC<AppProps> = ({ goToCreateScreen, accountViewFadeIn, selecte
   const { user } = useAuth();
   const currentMonth = new Date().getMonth() + 1;
   const isCurrentMonth = selectedMonth === currentMonth;
-
-  console.log('isCurrentMonth', currentMonth);
-  console.log('selectedMonth', selectedMonth);
   
   function returnUserAvatar() {
     if(user.avatar)
