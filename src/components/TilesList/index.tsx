@@ -21,6 +21,7 @@ const TilesList: FC<TilesListProps> = ({ balance }) => {
       <ScrollView
         style={{ width: '100%' }}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
       >
         <BalanceTile
           title="Balanço total"
@@ -35,7 +36,7 @@ const TilesList: FC<TilesListProps> = ({ balance }) => {
         />
 
         <BalanceTile
-          title="Saídas"
+          title="Despesas"
           value={balance?.outcome}
           type="outcome"
         />

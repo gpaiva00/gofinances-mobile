@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   
   content: {
     flex: 1,
-    paddingTop: 60,
+    paddingTop: 30,
     paddingHorizontal: 50,
   },
 
@@ -31,7 +31,15 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     borderWidth: 0.2,
     borderColor: '#878787',
-    borderBottomEndRadius: 5,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    elevation: 15,
   },
 
   suggestionItem : { 

@@ -5,19 +5,19 @@ import { useAuth } from "../../hooks/Auth"
 
 import styles from "./styles"
 
-type Balance = {
-  income: number
-  outcome: number
-  total: number
-}
-
 type AppProps = {
-  balance: Balance | undefined
-  goToCreateScreen: Function
+  goToCreateScreen(): void;
+  accountViewFadeIn(): void;
+  selectedMonth: number;
 }
 
-const HomeHeader: FC<AppProps> = ({ balance, goToCreateScreen }) => {
-  const { signOut, user } = useAuth();
+const HomeHeader: FC<AppProps> = ({ goToCreateScreen, accountViewFadeIn, selectedMonth }) => {
+  const { user } = useAuth();
+  const currentMonth = new Date().getMonth() + 1;
+  const isCurrentMonth = selectedMonth === currentMonth;
+
+  console.log('isCurrentMonth', currentMonth);
+  console.log('selectedMonth', selectedMonth);
   
   function returnUserAvatar() {
     if(user.avatar)
@@ -30,16 +30,20 @@ const HomeHeader: FC<AppProps> = ({ balance, goToCreateScreen }) => {
     <View style={styles.header}>
       <TouchableOpacity
         style={styles.userInfoButton}
-        onPress={() => {}}
+        onPress={accountViewFadeIn}
       >
         {returnUserAvatar()}
         
         <Text style={styles.userName}>{user.name.split(' ')[0]}</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => goToCreateScreen()} style={styles.addButton}>
-        <MaterialIcons name="add-circle" size={50}></MaterialIcons>
-      </TouchableOpacity>
+      {
+        isCurrentMonth && (
+          <TouchableOpacity onPress={() => goToCreateScreen()} style={styles.addButton}>
+            <MaterialIcons name="add-circle" size={50}></MaterialIcons>
+          </TouchableOpacity>
+        )
+      }
     </View>
   )
 }

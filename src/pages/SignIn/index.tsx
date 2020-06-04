@@ -22,7 +22,7 @@ const SignIn: FC = () => {
   async function handleSignIn() {
     setIsLoading(true)
 
-    const { type, accessToken, user } = await Google.logInAsync({
+    const { type, user } = await Google.logInAsync({
       androidClientId: "771235129605-m1qh2ogpfl28qfqiq25p5ucoddb3rb9c.apps.googleusercontent.com",
       scopes: ["email", "profile"],
     })
