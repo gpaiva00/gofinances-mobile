@@ -10,6 +10,8 @@ const CategoryIcon: FC<CategoryProps> = ({ title }) => {
   function returnCategoryIcon(title: string) {
     const iconSize = 28;
     switch (title) {
+      case 'Estudos':
+        return (<FontAwesome5 name="book-reader" size={iconSize} />)
       case 'Compras':
         return (<FontAwesome5 name="shopping-bag" size={iconSize} />)
       
