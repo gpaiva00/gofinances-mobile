@@ -25,8 +25,14 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "host.exp.exponent",
-      "versionCode": 1
+      "package": "com.go.finances",
+      "versionCode": 2,
+      "config": {
+        "googleSignIn": {
+          "apiKey": "771235129605-1lgfdmuc4u4dc6odd2508s8bsorc86lo.apps.googleusercontent.com",
+          "certificateHash": "F5F1EF701C4571B9513D340BBD9FD84724F6961D"
+        }
+      }
     }
   }
 }
