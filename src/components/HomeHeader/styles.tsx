@@ -25,6 +25,12 @@ const styles = StyleSheet.create({
     paddingLeft: 8
   },
 
+  userAvatar: {
+    height: 45,
+    width: 45,
+    borderRadius: 50
+  },
+
   addButton: {
     // position: "absolute",
     // right: 0,

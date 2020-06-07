@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { FlatList, View, Text } from 'react-native'
+import { FlatList, View, Text, ActivityIndicator } from 'react-native'
 
 import TransactionsListItem from '../TransactionsListItem';
 
@@ -19,28 +19,32 @@ type Category = {
 
 type AppProps = {
   transactions: [Transaction] | undefined;
+  loading: boolean;
 }
 
-const TransactionsList: FC<AppProps> = ({ transactions }) => {
+const TransactionsList: FC<AppProps> = ({ loading, transactions }) => {
 
   return (
     <>
-      {!transactions?.length &&
-        <View style={{
-            flex:1,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
+      <View style={{flex: 1, alignItems: 'center'}}>
+        {loading && 
+          <ActivityIndicator color="#000" size={35} style={{ marginTop: 80 }} /> 
+        }
+        
+        {!loading && !transactions?.length &&
+        
           <Text
             style={{
               color: '#878787',
-              fontSize: 16
+              fontSize: 16,
+              marginTop: 80,
             }}
           >
             Suas transações aparecerão aqui
           </Text>
-        </View>
-      }
+        }
+      
+      </View>
 
       <FlatList
         data={transactions}

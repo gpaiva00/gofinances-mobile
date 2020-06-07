@@ -48,7 +48,6 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [type, setType] = useState('');
   const { refresh, setRefresh } = useApp();
-
   
   async function fetchCategories() {
     const response = await api.get('categories');
@@ -56,8 +55,9 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
   }
 
   async function handleSave() {
+    console.log({title, value, categoryName})
 
-    if (!title || !value || !categoryName) {
+    if (!title || value === 0 || !categoryName) {
       return ToastAndroid.show('Por favor, preencha todos os campos', ToastAndroid.SHORT);
     }
 
@@ -82,21 +82,22 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
       
      ToastAndroid.show(errorMessage, ToastAndroid.SHORT);
    }
-  }
+  };
 
-  function handleSearchCategories(value: string): void {
+  function handleSearchCategories(value: string) {
     const newValue = value.trim().toLowerCase();
 
     const filtered = categories.filter(
       (category) =>
-        category.title.toLowerCase().slice(0, newValue.length) ===
+        category.title.toLowerCase().slice(0, newValue.toLocaleLowerCase().length) ===
         newValue
     );
+
+    // const newCategoryName = value.charAt(0).toUpperCase() + value.slice(1);
     
     setSuggestions(filtered);
     setCategoryName(value);
-  }
-
+  };
 
   useEffect(() => {
     fetchCategories();
@@ -113,7 +114,6 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
         behavior={Platform.select({
           ios: 'padding',
           android: 'padding',
-          web: 'position'
         })}
         style={styles.container}
         >
@@ -170,9 +170,10 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
             <Text style={styles.label}>Valor</Text>
             <TextInput 
               style={[styles.input]}
-              onChangeText={(text) => setValue(Number(text)) }
+              onChangeText={(text) => 
+                setValue(Number(text.replace(',', '.')))
+              }
               keyboardType="numeric"
-              // value={String(value)}
               placeholder='R$'
               maxLength={10}
               clearButtonMode="always"

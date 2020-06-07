@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react"
+import React, { FC, useCallback } from "react"
 import NumberFormat from 'react-number-format';
 import { View, Text, TouchableWithoutFeedback, Alert } from "react-native"
 import { useApp } from '../../hooks/App';
@@ -29,13 +29,13 @@ type AppProps = {
 const TransactionsListItem: FC<AppProps> = ({ transaction }) => {
   const { setRefresh } = useApp();
 
-  async function handleDeleteTransaction() {
+  const handleDeleteTransaction = useCallback(async () => {
     await api.delete(`/transactions/${transaction.id}`);
     
     setRefresh(true);
-  }
+  }, []);
 
-  function showAlert() {
+  const showAlert = useCallback(() => {
     return Alert.alert(
       'Excluir',
       'Deseja excluir essa transação?',
@@ -50,7 +50,7 @@ const TransactionsListItem: FC<AppProps> = ({ transaction }) => {
         }
       ]
     )
-  }
+  }, []);
    
   return (
     <TouchableWithoutFeedback

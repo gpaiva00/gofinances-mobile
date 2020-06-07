@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useRef } from "react"
+import React, { FC, useState, useEffect, useCallback, useRef } from "react"
 import { View, Text, TouchableOpacity, Animated } from "react-native"
 import { StackNavigationProp } from '@react-navigation/stack'
 import { useApp } from '../../hooks/App'
@@ -57,6 +57,7 @@ const months = [
 
 const Home: FC<AppProps> = ({ navigation }) => {
   const [transactions, setTransactions] = useState<[Transaction]>();
+  const [loading, setLoading] = useState(false);
   const [balance, setBalance] = useState<Balance>(() => {
     return {
       total: 0,
@@ -73,7 +74,9 @@ const Home: FC<AppProps> = ({ navigation }) => {
   const { refresh, setRefresh } = useApp();
   const { signOut } = useAuth();
 
-  async function fetchTransactionsAndBalance(month?: number) {
+  const fetchTransactionsAndBalance = useCallback(async (month?: number) => {
+    setLoading(true);
+    
     if (!month) month = selectedMonth;
 
     const {
@@ -83,47 +86,48 @@ const Home: FC<AppProps> = ({ navigation }) => {
     setTransactions(transactions);
     setBalance(balance);
     setRefresh(false);
-  }
+    setLoading(false);
+  }, []);
 
-  async function handleSelectMonth(month: string, index: number) {
+  const handleSelectMonth = useCallback(async (index: number) => {
     const monthNumber = index+1;
     await fetchTransactionsAndBalance(monthNumber);
 
     setSelectedMonth(monthNumber);
     monthPickerFadeOut();
-  }
+  }, []);
 
-  function monthPickerFadeIn() {
+  const monthPickerFadeIn = useCallback(() => {
     accountViewFadeOut();
 
     Animated.timing(monthPickerAnimation, {
       toValue: 0,
       duration: 350
     }).start();
-  };
+  }, []);
 
-  function accountViewFadeIn() {
+  const accountViewFadeIn = useCallback(() => {
     monthPickerFadeOut();
 
     Animated.timing(accountAnimation, {
       toValue: 0,
       duration: 350
     }).start();
-  };
+  }, []);
 
-  function monthPickerFadeOut() {
+  const monthPickerFadeOut = useCallback(() => {
     Animated.timing(monthPickerAnimation, {
       toValue: -350,
       duration: 350
     }).start();
-  };
+  }, []);
 
-  function accountViewFadeOut() {
+  const accountViewFadeOut = useCallback(() => {
     Animated.timing(accountAnimation, {
       toValue: -150,
       duration: 350
     }).start();
-  };
+  }, []);
 
   useEffect(() => {
     fetchTransactionsAndBalance();
@@ -147,13 +151,13 @@ const Home: FC<AppProps> = ({ navigation }) => {
             <Text style={styles.currentMonthLabel}>
               {months[selectedMonth - 1]}
             </Text>
-            <Feather name="chevron-down" size={15} />
+            <Feather name="calendar" size={15} />
           </TouchableOpacity>
         </View>
 
         <TilesList balance={balance} />
 
-        <TransactionsList transactions={transactions} />
+        <TransactionsList loading={loading} transactions={transactions} />
 
       </View>
 
@@ -175,7 +179,7 @@ const Home: FC<AppProps> = ({ navigation }) => {
           {months.map((month, index) => (
             <TouchableOpacity
               key={index}
-              onPress={() => handleSelectMonth(month, index)}
+              onPress={() => handleSelectMonth(index)}
             >
               <View style={[styles.monthButton, selectedMonth === (index + 1) && styles.activeMonth]}>
                 <Text style={[styles.monthName, selectedMonth === (index + 1) && styles.activeMonthName]}>{month}</Text>

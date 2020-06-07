@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import {View} from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 
@@ -7,11 +7,16 @@ interface CategoryProps {
 }
 
 const CategoryIcon: FC<CategoryProps> = ({ title }) => {
-  function returnCategoryIcon(title: string) {
-    const iconSize = 28;
+  const returnCategoryIcon = useCallback((title: string) => {
+    const iconSize = 24;
     switch (title) {
+      case 'Vestimentas':
+      case 'Roupas':
+        return (<FontAwesome5 name="tshirt" size={iconSize} />)
+
       case 'Estudos':
         return (<FontAwesome5 name="book-reader" size={iconSize} />)
+      
       case 'Compras':
         return (<FontAwesome5 name="shopping-bag" size={iconSize} />)
       
@@ -26,7 +31,11 @@ const CategoryIcon: FC<CategoryProps> = ({ title }) => {
   
       case 'Celular':
       case 'Tecnologia':
+      case 'Tecnologias':
         return (<FontAwesome5 name="mobile-alt" size={iconSize} />)
+
+      case 'Spotify':
+        return <FontAwesome5 name="spotify" size={iconSize} />
   
       case 'Casa':
         return (<FontAwesome5 name="home" size={iconSize} />)
@@ -42,13 +51,11 @@ const CategoryIcon: FC<CategoryProps> = ({ title }) => {
       default:
         return (<FontAwesome5 name="dollar-sign" size={iconSize} />)
     }
-  }
+  }, []);
     
-  
-
   return (
     <View style={{
-      backgroundColor: '#fff',
+      backgroundColor: '#ebebeb',
       borderRadius: 50,
       alignItems: 'center',
       justifyContent: 'center',

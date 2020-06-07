@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import { View, Text } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 
@@ -14,7 +14,7 @@ interface BalanceProps {
 
 const BalanceTile: FC<BalanceProps> = ({ title, value, type }) => {
 
-  function returnTileIcon(type: string) {
+  const returnTileIcon = useCallback((type: string) => {
     let name, color;
 
     switch(type) {
@@ -41,7 +41,7 @@ const BalanceTile: FC<BalanceProps> = ({ title, value, type }) => {
         color={color}
       />
     );
-  }
+  }, []);
 
   return (
     <View style={styles.tile}>

@@ -1,4 +1,4 @@
-import React, { FC } from "react"
+import React, { FC, useCallback } from "react"
 import { View, Text, Image, TouchableOpacity } from "react-native"
 import { MaterialIcons } from "@expo/vector-icons"
 import { useAuth } from "../../hooks/Auth"
@@ -16,12 +16,12 @@ const HomeHeader: FC<AppProps> = ({ goToCreateScreen, accountViewFadeIn, selecte
   const currentMonth = new Date().getMonth() + 1;
   const isCurrentMonth = selectedMonth === currentMonth;
   
-  function returnUserAvatar() {
+  const returnUserAvatar = useCallback(() => {
     if(user.avatar)
-      return (<Image source={{ uri: user.avatar }} width={50} />);
+      return (<Image source={{ uri: user.avatar }} style={styles.userAvatar} />);
     
     return (<MaterialIcons name="account-circle" size={50}/>);
-  }
+  }, []);
 
   return (
     <View style={styles.header}>
@@ -31,7 +31,7 @@ const HomeHeader: FC<AppProps> = ({ goToCreateScreen, accountViewFadeIn, selecte
       >
         {returnUserAvatar()}
         
-        <Text style={styles.userName}>{user.name.split(' ')[0]}</Text>
+        <Text style={styles.userName}>Olá, {user.name.split(' ')[0]}</Text>
       </TouchableOpacity>
 
       {
