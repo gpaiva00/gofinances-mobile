@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   tileValue: {
     fontFamily: 'Helvetica-Regular',
     fontSize: 15,
-    color: '#363F5F'
+    color: '#333'
   },
 });
 

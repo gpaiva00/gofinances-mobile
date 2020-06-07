@@ -4,7 +4,6 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { useApp } from '../../hooks/App'
 import { useAuth } from "../../hooks/Auth"
 
-
 import api from "../../services/api"
 
 import { Feather } from '@expo/vector-icons'
