@@ -1,6 +1,17 @@
 import { StyleSheet } from "react-native"
 
 const styles = StyleSheet.create({
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0,0,0,.6)',
+    // backgroundColor: '#000',
+    // opacity: 0.6
+  },
+
   container: {
     flex: 1,
     paddingHorizontal: 18,
@@ -10,7 +21,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingVertical: 20,
+    paddingTop: 20,
   },
 
   transactionsTitle: {
@@ -22,8 +33,6 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
   },
 
-  // Month Picker
-
   currentMonthLabel: {
     marginRight: 5,
     fontSize: 15,
@@ -31,110 +40,6 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica-Bold",
   },
 
-  monthPicker: {
-    position: "absolute",
-    width: "100%",
-    height: 350,
-    left: 0,
-    flexDirection: "column",
-    backgroundColor: "#fff",
-    paddingHorizontal: 16,
-    paddingTop: 16,
-    
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.43,
-    shadowRadius: 9.51,
-    elevation: 15,
-  },
-
-  monthsContent: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignContent: "center",
-    flexWrap: "wrap",
-    paddingHorizontal: 40,
-    paddingBottom: 20,
-  },
-
-  monthButton: {
-    justifyContent: "center",
-    alignItems: "center",
-    height: 75,
-    width: 75,
-  },
-
-  activeMonth: {
-    borderRadius: 50,
-    backgroundColor: "#000",
-  },
-
-  activeMonthName: {
-    color: "#fff",
-  },
-
-  monthName: {
-    fontFamily: "Helvetica-Regular",
-    fontSize: 30,
-    color: "#444",
-  },
-
-  "monthName:last-child": {
-    marginRight: 0,
-  },
-
-  // Account View
-
-  accountView: {
-    position: "absolute",
-    width: "100%",
-    height: 150,
-    left: 0,
-    flexDirection: "column",
-    backgroundColor: "#fff",
-    paddingHorizontal: 16,
-    paddingTop: 16,
-    
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.43,
-    shadowRadius: 9.51,
-    elevation: 15,
-  },
-
-  accountViewHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingBottom: 26,
-  },
-
-  accountViewTitle: {
-    fontFamily: 'Helvetica-Regular',
-    color: '#878787',
-  },
-
-  accountViewOption: {
-    flexDirection: "row",
-    alignItems: "center",
-    // borderBottomWidth: 0.5,
-    // borderBottomColor: '#666',
-    // paddingBottom: 16
-  },
-
-  accountViewOptionText: {
-    fontFamily: 'Helvetica-Medium',
-    fontSize: 16,
-    color: '#333',
-    marginLeft: 16,
-  },
 })
 
 export default styles

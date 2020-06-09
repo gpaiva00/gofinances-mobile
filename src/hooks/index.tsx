@@ -2,11 +2,14 @@ import React, { FC } from 'react';
 
 import { AuthProvider } from './Auth';
 import { AppProvider } from './App';
+import { MonthProvider } from './Month';
 
 const MainProvider: FC = ({ children }) => (
   <AuthProvider>
     <AppProvider>
-      {children}
+      <MonthProvider>
+        {children}
+      </MonthProvider>
     </AppProvider>
   </AuthProvider>
 )

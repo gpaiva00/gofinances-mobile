@@ -1,11 +1,12 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useRef } from 'react';
 import { 
   View, 
   Text, 
   TextInput, 
   TouchableOpacity, 
+  TouchableHighlight,
   ToastAndroid, 
-  KeyboardAvoidingView, Platform, FlatList } from 'react-native';
+  KeyboardAvoidingView, Platform, FlatList, Animated, Easing } from 'react-native';
 
 import { RouteProp } from '@react-navigation/native'
 import api from '../../services/api';
@@ -46,7 +47,8 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
   const [categories, setCategories] = useState([] as Category[]);
   const [suggestions, setSuggestions] = useState([] as Category[]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [type, setType] = useState('');
+  const switchAnimation = useRef(new Animated.Value(0)).current;
+  const [type, setType] = useState('income');
   const { refresh, setRefresh } = useApp();
   
   async function fetchCategories() {
@@ -98,6 +100,16 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
     setSuggestions(filtered);
     setCategoryName(value);
   };
+
+  function toggleSwitchAnimation(transactionType: string) {
+    const toValue = transactionType === 'income' ? 0 : 1;
+    // console.log('value', toValue);
+
+    Animated.timing(switchAnimation, {
+      toValue,
+      duration: 500
+    }).start();
+  }
 
   useEffect(() => {
     fetchCategories();
@@ -184,18 +196,43 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
             <Text style={styles.label}>Tipo</Text>
             
             <View style={styles.buttonGroup}>
+              <Animated.View style={[
+                styles.switchSlide, 
+                { left: switchAnimation.interpolate({
+                  inputRange: [0,1],
+                  outputRange: ['0%', '50%']
+                }) 
+                }]} 
+              />
+              
               <TouchableOpacity
-                onPress={() => setType('income')}
-                style={[styles.button, type === 'income' && styles.incomeButtonActive]}
+                onPress={() => {
+                  setType('income')
+                  toggleSwitchAnimation('income')
+                }}
+                style={styles.button}
               >
-                <Text style={styles.buttonText}>Entrada</Text>
+                <Text 
+                  style={[styles.buttonText, type === 'income' && 
+                  styles.activeButton]}
+                >
+                    Entrada
+                  </Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={() => setType('outcome')}
-                style={[styles.button, type === 'outcome' && styles.outcomeButtonActive]}
+                onPress={() => {
+                  setType('outcome')
+                  toggleSwitchAnimation('outcome')
+                }}
+                style={styles.button}
               >
-                <Text style={styles.buttonText}>Saída</Text>
+                <Text 
+                  style={[styles.buttonText, type === 'outcome' && 
+                  styles.activeButton]}
+                >
+                    Saída
+                </Text>
               </TouchableOpacity>
             </View>
           </View>

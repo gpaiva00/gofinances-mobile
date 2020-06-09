@@ -1,14 +1,14 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   hidePanelButton: {
     alignSelf: "flex-end",
   },
   
-  monthPicker: {
+  accountView: {
     position: "absolute",
     width: "100%",
-    height: 350,
+    height: 150,
     left: 0,
     flexDirection: "column",
     backgroundColor: "#fff",
@@ -27,42 +27,29 @@ const styles = StyleSheet.create({
     elevation: 15,
   },
 
-  monthsContent: {
-    flex: 1,
+  accountViewHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignContent: "center",
-    flexWrap: "wrap",
-    paddingHorizontal: 40,
-    paddingBottom: 20,
-  },
-
-  monthButton: {
-    justifyContent: "center",
     alignItems: "center",
-    height: 75,
-    width: 75,
+    paddingBottom: 26,
   },
 
-  activeMonth: {
-    borderRadius: 50,
-    backgroundColor: "#000",
+  accountViewTitle: {
+    fontFamily: 'Helvetica-Regular',
+    color: '#878787',
   },
 
-  activeMonthName: {
-    color: "#fff",
+  accountViewOption: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 
-  monthName: {
-    fontFamily: "Helvetica-Regular",
-    fontSize: 30,
-    color: "#444",
+  accountViewOptionText: {
+    fontFamily: 'Helvetica-Medium',
+    fontSize: 16,
+    color: '#333',
+    marginLeft: 16,
   },
-
-  "monthName:last-child": {
-    marginRight: 0,
-  },
-
 });
 
 export default styles;

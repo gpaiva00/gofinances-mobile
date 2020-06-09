@@ -68,25 +68,44 @@ const styles = StyleSheet.create({
   buttonGroup: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    borderWidth: 1,
+    borderColor: '#878787',
+    borderRadius: 10,
+    height: 55,
   },
 
   button: {
     padding: 20,
-    borderRadius: 5,
+    // borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
-    width: '48%',
-    backgroundColor: '#969696',
+    width: '50%',
+    // backgroundColor: '#969696',
+  },
+
+  switchSlide: {
+    position: 'absolute',
+    height: 55,
+    width: '50%',
+    backgroundColor: '#000',
+    borderRadius: 10,
+
+  },
+
+  activeButton: {
+    fontFamily: 'Helvetica-Bold',
+    color: '#fff'
   },
 
   incomeButtonActive: {
-    backgroundColor: '#37C988',
-    fontWeight: 'bold',
+    // color: '#000'
+    // backgroundColor: '#37C988',
+    // fontWeight: 'bold',
   },
 
   buttonText: {
-    color: '#fff',
+    color: '#000',
     fontFamily: 'Helvetica-Medium',
     fontSize: 16,
   },

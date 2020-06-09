@@ -1,79 +1,94 @@
-import React, { FC, useEffect, useRef } from "react"
+import React, { FC, useRef, useCallback, useEffect } from "react"
 import { View, Text, TouchableOpacity, Animated } from "react-native"
+
+import { useMonth } from '../../hooks/Month';
 
 import { Feather } from '@expo/vector-icons'
 import styles from "./styles"
 
 type MonthPickerProps = {
-  show: boolean;
-  handleHidePanel(): void;
+  toggle: boolean;
+  setToggle(arg: boolean): void;
+  fetchTransactionsAndBalance(monthNumber?: number): void;
 }
 
-const MonthPicker: FC<MonthPickerProps> = ({ show, handleHidePanel }) => {
-  const months = [
-    "Jan",
-    "Fev",
-    "Mar",
-    "Abr",
-    "Mai",
-    "Jun",
-    "Jul",
-    "Ago",
-    "Set",
-    "Out",
-    "Nov",
-    "Dez",
-  ]
+const MonthPicker: FC<MonthPickerProps> = ({ 
+  toggle, setToggle, fetchTransactionsAndBalance 
+}) => {
+  const monthPickerAnimation = useRef(new Animated.Value(-350)).current;
+  const { selectedMonthNumber, setSelectedMonthNumber, setSelectedMonthName, months } = useMonth();
 
-  const heightAnimation = useRef(new Animated.Value(0)).current;
+  const handleSelectMonth = useCallback(async (monthNumber: number) => {
+    await fetchTransactionsAndBalance(monthNumber);
+    
+    setSelectedMonthNumber(monthNumber);
+    setSelectedMonthName(months[monthNumber - 1]);
+    fadeOut();
+  }, []);
+  
+  const fadeIn = useCallback(() => {
+    // accountViewFadeOut();
 
-  const fadeIn = () => {
-    // Will change fadeAnim value to 1 in 5 seconds
-    Animated.timing(heightAnimation, {
-      toValue: 1,
-      duration: 2000
-    }).start();
-  };
-
-  const fadeOut = () => {
-    // Will change fadeAnim value to 0 in 5 seconds
-    Animated.timing(heightAnimation, {
+    Animated.timing(monthPickerAnimation, {
       toValue: 0,
-      duration: 2000
+      duration: 350
     }).start();
-  };
+  }, []);
+
+  const fadeOut = useCallback(() => {
+    Animated.timing(monthPickerAnimation, {
+      toValue: -350,
+      duration: 350
+    }).start();
+
+    setToggle(false);
+  }, []);
 
   useEffect(() => {
-    fadeIn();
-  }, [show]);
+    if(toggle) fadeIn();
+    else fadeOut();
 
-  if (!show) return <></>
+  }, [toggle]);
 
   return (
     <Animated.View
-      style={[styles.Container,
-        {
-          height: heightAnimation
-        }
-      ]}
-    >
-      <TouchableOpacity
-        onPress={fadeOut}
+        style={[styles.monthPicker,
+          {
+            bottom: monthPickerAnimation,
+          }
+        ]}
       >
-        <Feather style={styles.chevDown} name="chevron-down" size={20} />
-      </TouchableOpacity>
-      <View style={styles.monthsContent}>
-        {months.map((month, index) => (
-          <TouchableOpacity
-            key={index}
-            onPress={() => console.log(index)}
-          >
-            <Text style={styles.monthName}>{month}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
-    </Animated.View>
-  )
+        <TouchableOpacity
+          onPress={fadeOut}
+          style={styles.hidePanelButton}
+        >
+          <Feather name="x" size={20} color="#878787" />
+        </TouchableOpacity>
+        <View style={styles.monthsContent}>
+          {months.map((month, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() => handleSelectMonth(index+1)}
+            >
+              <View 
+                style={[
+                  styles.monthButton, selectedMonthNumber === (index + 1) &&
+                  styles.activeMonth
+                ]}
+              >
+                <Text style={[
+                    styles.monthName, selectedMonthNumber === (index + 1) &&
+                    styles.activeMonthName
+                  ]}
+                >
+                    {month}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </Animated.View>
+  );
 }
 
 export default MonthPicker
