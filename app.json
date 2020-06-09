@@ -7,7 +7,7 @@
       "android",
       "web"
     ],
-    "version": "2.0.0",
+    "version": "2.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -25,11 +25,11 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "host.exp.exponent",
-      "versionCode": 2,
+      "package": "com.go.finances",
+      "versionCode": 3,
       "config": {
         "googleSignIn": {
-          "apiKey": "771235129605-1lgfdmuc4u4dc6odd2508s8bsorc86lo.apps.googleusercontent.com",
+          "apiKey": "AIzaSyCgyboyO0NI3L-XzoyXj-BonxeCcfEyrjw",
           "certificateHash": "F5F1EF701C4571B9513D340BBD9FD84724F6961D"
         }
       }

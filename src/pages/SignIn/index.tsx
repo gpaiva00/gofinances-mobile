@@ -24,7 +24,7 @@ const SignIn: FC = () => {
 
     const { type, user } = await Google.logInAsync({
       androidStandaloneAppClientId: "771235129605-1lgfdmuc4u4dc6odd2508s8bsorc86lo.apps.googleusercontent.com",
-      androidClientId: '771235129605-m1qh2ogpfl28qfqiq25p5ucoddb3rb9c.apps.googleusercontent.com',
+      // androidClientId: '771235129605-m1qh2ogpfl28qfqiq25p5ucoddb3rb9c.apps.googleusercontent.com',
       scopes: ["email", "profile"],
     })
 

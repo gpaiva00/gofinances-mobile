@@ -28,7 +28,7 @@ const TransactionsList: FC<AppProps> = ({ loading, transactions }) => {
     <>
       <View style={{flex: 1, alignItems: 'center'}}>
         {loading && 
-          <ActivityIndicator color="#000" size={35} style={{ marginTop: 80 }} /> 
+          <ActivityIndicator color="#000" size={30} style={{ marginTop: 40 }} /> 
         }
         
         {!loading && !transactions?.length &&

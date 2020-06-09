@@ -12,7 +12,6 @@ const App: FC = () => {
     'Helvetica-Medium': require('./assets/fonts/HelveticaNowDisplay-Medium.otf'),
     'Helvetica-Bold': require('./assets/fonts/HelveticaNowDisplay-Bold.otf'),
     'Helvetica-Light': require('./assets/fonts/HelveticaNowDisplay-Light.otf'),
-    'Helvetica-Thin': require('./assets/fonts/HelveticaNowDisplay-Thin.otf'),
     'Helvetica-ExtraBold': require('./assets/fonts/HelveticaNowDisplay-ExtraBold.otf'),
   });
 
