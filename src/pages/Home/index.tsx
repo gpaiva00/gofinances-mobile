@@ -125,10 +125,6 @@ const Home: FC<AppProps> = ({ navigation }) => {
         fetchTransactionsAndBalance={fetchTransactionsAndBalance} 
       />
       
-      <AccountPanel
-        toggle={toggleAccountPanel}
-        setToggle={setToggleAccountPanel}
-      />
     </>
   )
 }
