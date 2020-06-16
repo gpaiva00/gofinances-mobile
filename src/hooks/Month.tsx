@@ -47,7 +47,7 @@ const MonthProvider: FC = ({ children }) => {
 function useMonth() {
   const context = useContext(MonthContext)
 
-  if (!context) throw new Error("useAuth must be used whithin an MonthProvider")
+  if (!context) throw new Error("useMonth must be used whithin an MonthProvider")
 
   return context
 }

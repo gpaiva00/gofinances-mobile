@@ -21,7 +21,7 @@ const AppProvider: FC = ({ children }) => {
 function useApp() {
   const context = useContext(AppContext)
 
-  if (!context) throw new Error("useAuth must be used whithin an AuthProvider")
+  if (!context) throw new Error("useApp must be used whithin an AppProvider")
 
   return context
 }
