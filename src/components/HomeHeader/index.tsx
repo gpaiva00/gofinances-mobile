@@ -33,6 +33,9 @@ const HomeHeader: FC<AppProps> = ({ goToCreateScreen, accountViewFadeIn, selecte
         
         <Text style={styles.userName}>Olá, {user.name.split(' ')[0]}</Text>
       </TouchableOpacity> */}
+      <View style={{ flexDirection: 'row' }}>
+        <Text style={styles.go}>Go</Text><Text style={styles.finances}>Finances</Text>
+      </View>
 
       {
         isCurrentMonth && (

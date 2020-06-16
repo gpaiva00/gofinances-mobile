@@ -77,9 +77,9 @@ const Home: FC<AppProps> = ({ navigation }) => {
     setToggleMonthPicker(false);
   }
 
-  useEffect(() => {
-    fetchTransactionsAndBalance();
-  }, [refresh]);
+  // useEffect(() => {
+  //   fetchTransactionsAndBalance();
+  // }, [refresh]);
 
   return (
     <>      

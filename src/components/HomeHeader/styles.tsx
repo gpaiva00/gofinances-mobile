@@ -11,32 +11,37 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
   },
 
-  userInfoButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  go: {
+    fontFamily: 'Helvetica-ExtraBold',
+    fontSize: 23
   },
 
-  userName: {
-    fontFamily: 'Helvetica-Bold',
-    fontSize: 16,
-    paddingLeft: 8
+  finances: {
+    fontFamily: 'Helvetica-Regular',
+    fontSize: 23
   },
 
-  userAvatar: {
-    height: 45,
-    width: 45,
-    borderRadius: 50
-  },
+  // userInfoButton: {
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  // },
 
-  addButton: {
-    // position: "absolute",
-    // right: 0,
-    // paddingTop: 55,
-    // paddingRight: 20,
-  },
+  // userName: {
+  //   fontFamily: 'Helvetica-Bold',
+  //   fontSize: 16,
+  //   paddingLeft: 8
+  // },
+
+  // userAvatar: {
+  //   height: 45,
+  //   width: 45,
+  //   borderRadius: 50
+  // },
+
+  addButton: {},
 })
 
 export default styles;
