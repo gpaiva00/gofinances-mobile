@@ -16,12 +16,12 @@ const HomeHeader: FC<AppProps> = ({ goToCreateScreen, accountViewFadeIn, selecte
   const currentMonth = new Date().getMonth() + 1;
   const isCurrentMonth = selectedMonth === currentMonth;
   
-  const returnUserAvatar = useCallback(() => {
-    if(user.avatar)
-      return (<Image source={{ uri: user.avatar }} style={styles.userAvatar} />);
+  // const returnUserAvatar = useCallback(() => {
+  //   if(user.avatar)
+  //     return (<Image source={{ uri: user.avatar }} style={styles.userAvatar} />);
     
-    return (<MaterialIcons name="account-circle" size={50}/>);
-  }, []);
+  //   return (<MaterialIcons name="account-circle" size={50}/>);
+  // }, []);
 
   return (
     <View style={styles.header}>
