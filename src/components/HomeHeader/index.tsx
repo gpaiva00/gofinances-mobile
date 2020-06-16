@@ -25,14 +25,14 @@ const HomeHeader: FC<AppProps> = ({ goToCreateScreen, accountViewFadeIn, selecte
 
   return (
     <View style={styles.header}>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={styles.userInfoButton}
         onPress={accountViewFadeIn}
       >
         {returnUserAvatar()}
         
         <Text style={styles.userName}>Olá, {user.name.split(' ')[0]}</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       {
         isCurrentMonth && (
