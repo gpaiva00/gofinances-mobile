@@ -1,7 +1,7 @@
 import React, { FC, useCallback } from "react"
 import { View, Text, Image, TouchableOpacity } from "react-native"
 import { MaterialIcons } from "@expo/vector-icons"
-import { useAuth } from "../../hooks/Auth"
+// import { useAuth } from "../../hooks/Auth"
 
 import styles from "./styles"
 
@@ -12,7 +12,7 @@ type AppProps = {
 }
 
 const HomeHeader: FC<AppProps> = ({ goToCreateScreen, accountViewFadeIn, selectedMonth }) => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const currentMonth = new Date().getMonth() + 1;
   const isCurrentMonth = selectedMonth === currentMonth;
   
