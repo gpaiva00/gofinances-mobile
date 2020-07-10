@@ -8,8 +8,8 @@ export default class DatabaseInit {
     constructor() {
         db = DatabaseConnection.getConnection();
         db.exec([{ sql: 'PRAGMA foreign_keys = ON;', args: [] }], false, () =>
-        console.log('Foreign keys turned on')
-    );
+            console.log('Foreign keys turned on')
+        );
         this.initializeDatabase()
     }
 
@@ -45,8 +45,6 @@ export default class DatabaseInit {
                   console.log('executing sql commands');
                   tx.executeSql(sqlCommand);
                 }
-                // for (var i = 0; i < sql.length; i++) {
-                // }
             }, (error) => {
                 console.log("error call back : " + JSON.stringify(error));
                 console.log(error);

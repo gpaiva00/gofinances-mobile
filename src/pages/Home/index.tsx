@@ -4,7 +4,8 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { useApp } from '../../hooks/App'
 import { useMonth } from '../../hooks/Month';
 
-import api from "../../services/api"
+import DatabaseInitialize from '../../database/initialize';
+import TransactionService from "../../services/TransactionService"
 
 import { Feather } from '@expo/vector-icons'
 import styles from "./styles"
@@ -41,7 +42,7 @@ type AppProps = {
 
 
 const Home: FC<AppProps> = ({ navigation }) => {
-  const [transactions, setTransactions] = useState<[Transaction]>();
+  const [transactions, setTransactions] = useState<Transaction[]>();
   const [loading, setLoading] = useState(false);
   const [balance, setBalance] = useState<Balance>(() => {
     return {
@@ -55,19 +56,21 @@ const Home: FC<AppProps> = ({ navigation }) => {
   const [toggleAccountPanel, setToggleAccountPanel] = useState(false);
   
   const { selectedMonthName, selectedMonthNumber } = useMonth();
-  const { refresh, setRefresh } = useApp();
+  const { refresh, setRefresh, initDatabase, setInitDatabase } = useApp();
 
   const fetchTransactionsAndBalance = useCallback(async (month?: number) => {
     setLoading(true);
     
     if (!month) month = selectedMonthNumber;
 
-    const {
-      data: { transactions, balance },
-    } = await api.get(`transactions?month=${String(month)}`)
+    // const {
+    //   data: { transactions, balance },
+    // } = await api.get(`transactions?month=${String(month)}`)
+    const result = await TransactionService.find();
+    console.log(result);
 
-    setTransactions(transactions);
-    setBalance(balance);
+    setTransactions(result);
+    // setBalance(balance);
     setRefresh(false);
     setLoading(false);
   }, []);
@@ -76,10 +79,18 @@ const Home: FC<AppProps> = ({ navigation }) => {
     setToggleAccountPanel(false);
     setToggleMonthPicker(false);
   }
+  
+  useEffect(() => {
+    if (!initDatabase) {
+      new DatabaseInitialize();
+      setInitDatabase(true);
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   fetchTransactionsAndBalance();
-  // }, [refresh]);
+  useEffect(() => {
+    fetchTransactionsAndBalance();
+  }, [refresh]);
+
 
   return (
     <>      

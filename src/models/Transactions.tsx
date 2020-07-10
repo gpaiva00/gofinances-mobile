@@ -1,13 +1,13 @@
-interface TransactionDTO {
+interface Transaction {
   title: string;
   type: string;
   value: number;
   category_id: number;
 }
 
-export class Transaction {
+export class Transactions {
   
-  constructor(params: TransactionDTO) {
+  constructor(params: Transaction) {
     this.title = params.title;
     this.type = params.type;
     this.value = params.value;

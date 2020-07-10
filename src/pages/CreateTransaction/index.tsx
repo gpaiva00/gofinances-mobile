@@ -4,12 +4,13 @@ import {
   Text, 
   TextInput, 
   TouchableOpacity, 
-  TouchableHighlight,
   ToastAndroid, 
-  KeyboardAvoidingView, Platform, FlatList, Animated, Easing } from 'react-native';
+  KeyboardAvoidingView, Platform, FlatList, Animated } from 'react-native';
 
 import { RouteProp } from '@react-navigation/native'
-import api from '../../services/api';
+
+import TransactionService from '../../services/TransactionService';
+import CategoryService from '../../services/CategoryService';
 
 import { useApp } from '../../hooks/App';
 
@@ -52,8 +53,10 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
   const { refresh, setRefresh } = useApp();
   
   async function fetchCategories() {
-    const response = await api.get('categories');
-    setCategories(response.data);
+    const categoryService = new CategoryService();
+    const response = await categoryService.findAll();
+    console.log('fetchCategories', response._array);
+    setCategories(response._array as Category[]);
   }
 
   async function handleSave() {
@@ -64,25 +67,36 @@ const CreateTransaction: FC<AppProps> = ({ route, navigation }) => {
     }
 
    try {
-    const response = await api.post('transactions', {
+    // const response = await api.post('transactions', {
+    //   title,
+    //   value,
+    //   category: categoryName,
+    //   type
+    // });
+    const transactionService = new TransactionService();
+
+    const response = await transactionService.create({
       title,
       value,
-      category: categoryName,
+      categoryName,
       type
     });
 
+    // console.log('create', response);
+
     // if (response.status === 400) throw new Error(response)
 
-    if (response.status === 200) {
-      setRefresh(true);
-      navigation.goBack()
-    }
+    // if (response.status === 200) {
+    //   setRefresh(true);
+    //   navigation.goBack()
+    // }
    } catch (error) {
-     const axiosError = error as AxiosError<ServerError>
-     const errorMessage = axiosError.response?.data.message 
-      || 'Houve um erro. Tente mais tarde';
+    //  const axiosError = error as AxiosError<ServerError>
+    //  const errorMessage = axiosError.response?.data.message 
+    //   || 'Houve um erro. Tente mais tarde';
+    console.error(error);
       
-     ToastAndroid.show(errorMessage, ToastAndroid.SHORT);
+     ToastAndroid.show('Não foi possível criar sua transação', ToastAndroid.SHORT);
    }
   };
 
